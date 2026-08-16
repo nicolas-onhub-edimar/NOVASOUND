@@ -1,0 +1,40 @@
+:root{
+    --bg: #0D0D0D;
+    --bg-elevated: #1A1A1A;
+    --text: #F2F2F0;
+    --text-muted: #9A9A9A;
+    --accent: #E5002B;
+    --acent-dark: #8C0019;
+    --border: #2A2A2A;
+
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+}
+
+/* RESET */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+h1, h2, h3{
+    font-family: var(--font-heading);
+    line-height: 1.1;
+}
+
+a {
+    gap: 30px;  
+    color: inherit;
+    text-decoration: none;
+}
+
