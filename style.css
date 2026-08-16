@@ -4,7 +4,7 @@
     --text: #F2F2F0;
     --text-muted: #9A9A9A;
     --accent: #E5002B;
-    --acent-dark: #8C0019;
+    --accent-dark: #8C0019;
     --border: #2A2A2A;
 
     --font-heading: 'Space Grotesk', sans-serif;
@@ -38,3 +38,41 @@ a {
     text-decoration: none;
 }
 
+/* ---------- HEADER ---------- */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.logo img{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+nav {
+    display: flex;
+    gap: 32px;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
