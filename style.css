@@ -131,6 +131,13 @@ nav a:hover {
     gap: 110px;
     list-style: none;
     padding: 0;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* esconde a barra de rolagem no Firefox */
+}
+
+.artist-grid::webkit-scrollbar{
+    display: none; /* esconde a barra no chrome/safari */
 }
 
 .artist-grid h3{
