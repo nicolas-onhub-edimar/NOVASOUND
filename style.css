@@ -76,3 +76,22 @@ nav {
 nav a:hover {
     color: var(--accent);
 }
+
+/* ---------- HERO ---------- */
+
+.hero{
+    padding: 120px 40px;
+    max-width: 700px;
+}
+
+.hero h1{
+    font-size: 56px;
+    margin-bottom: 18px;
+}
+
+.hero p{
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+}
+
