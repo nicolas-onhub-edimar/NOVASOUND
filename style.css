@@ -124,6 +124,15 @@ nav a:hover {
     padding: 0 40px 80px;
 }*/
 
+
+/* ---------- ARTIST CAROUSEL ---------- */
+
+.artist-carousel{
+    position: relative;
+    padding: 0 40px 80px;
+}
+
+
 .artist-grid{
     display: grid;
     grid-auto-flow: column;
@@ -140,9 +149,34 @@ nav a:hover {
     display: none; /* esconde a barra no chrome/safari */
 }
 
+
 .artist-grid h3{
     padding: 0px 20px;
 }
+
+
+.scroll-btn{
+    position: absolute;
+    top: 40%;
+    right: 8px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 28px;
+    cursor: pointer;
+    padding: 8px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+
+.scroll-btn:hover{
+    opacity: 1;
+    color: var(--accent);
+    transform: translateY(-50%) translateX(4px);
+}
+
 
 /* ---------- ARTIST CARD ---------- */
 
