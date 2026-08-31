@@ -136,10 +136,10 @@ nav a:hover {
 .artist-grid{
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 250px;
-    gap: 110px;
+    grid-auto-columns: 180px;
+    gap: 60px;
     list-style: none;
-    padding: 0;
+    padding: 20px 100px 0px;
     overflow-x: auto;
     scroll-behavior: smooth;
     scrollbar-width: none; /* esconde a barra de rolagem no Firefox */
@@ -147,6 +147,11 @@ nav a:hover {
 
 .artist-grid::webkit-scrollbar{
     display: none; /* esconde a barra no chrome/safari */
+}
+
+
+.artist-grid span{
+    color: var(--text);
 }
 
 
@@ -158,7 +163,6 @@ nav a:hover {
 .scroll-btn{
     position: absolute;
     top: 40%;
-    right: 8px;
     transform: translateY(-50%);
     background: none;
     border: none;
@@ -170,6 +174,14 @@ nav a:hover {
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+.scroll-btn.scroll-left{
+    color: var(--text);
+    left: 8px;
+}
+
+.scroll-btn.scroll-right{
+    right: 8px;
+}
 
 .scroll-btn:hover{
     opacity: 1;
@@ -177,6 +189,13 @@ nav a:hover {
     transform: translateY(-50%) translateX(4px);
 }
 
+.scroll-btn.scroll-right:hover {
+    transform: translateY(-50%) translateX(4px);
+}
+
+.scroll-btn.scroll-left:hover {
+    transform: translateY(-50%) translateX(-4px);
+}
 
 /* ---------- ARTIST CARD ---------- */
 
@@ -204,4 +223,11 @@ nav a:hover {
     font-size: 13px;
     color: var(--text-muted);
     padding: 0 36px 15px;
+}
+
+.section-title{
+    font-size: 21px;
+    margin-left: 48px;
+    margin-bottom: 20px;
+    
 }
