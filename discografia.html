@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaSound©</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header>
+    <a href="index.html" class="logo">
+        <img src="LOGO.png" alt="Logo NovaSound">
+        <span></span>
+    </a>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="artistas.html">Artistas</a>
+    <a href="mais-tocadas.html">Mais tocadas</a>
+    <a href="novidades.html">Novidades</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+  </nav>    
+</header>
+
+    <main>
+        <section class="page-header">
+            <h1>Discografia</h1>
+            <p>Todos os álbuns lançados pelos nossos artistas.</p>
+        </section>
+
+            <div class="album-grid" id="albumGrid">
+        
+    </div>
+
+    
+    <!-- Fazendo a segunda página para o álbum que for clicado. -->
+    
+    <div class="album-detail is-hidden" id="albumDetail">
+        <button class="back-btn" id="backBtn">&#8592; Voltar</button>
+
+        <div class="album-detail-header">
+            <img id="detailCover" src="" alt="">
+            <div class="album-detail-info">
+                <h2 id="detailName"></h2>
+                <p id="detailArtist"></p>
+                <p id="detailYear"></p>
+            </div>
+        </div>
+
+        <ol class="tracklist" id="detailTracklist">
+            <!-- Faixas serão adicionadas pelo JavaScript automaticamente aqui.-->
+        </ol>
+    </div>
+
+    </main>
+
+
+    <script src="dados.js"></script>
+    <script src="discografia.js"></script>
+</body>
+</html>
