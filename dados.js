@@ -19,4 +19,15 @@ const albuns = [
             {numero: 1, titulo: "POP OUT", arquivo: "audio/MUSIC/POP OUT.mp3"},
         ]
     }
+,
+    {
+        nome: "333",
+        artista: "Matuê",
+        ano: 2024,
+        capa: "https://i.scdn.co/image/ab67616d0000b273996475bce560ead5737dbda1",
+        faixas: [ /* Ir adicionando faixas do álbum 333 aqui por numeração */
+            {numero: 1, titulo: "Crack com Mussilon", arquivo: "audio/333/Crack com Mussilon.mp3"},
+        ]
+
+    }
 ]
