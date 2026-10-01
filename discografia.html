@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<header>
+<header>    
     <a href="index.html" class="logo">
         <img src="LOGO.png" alt="Logo NovaSound">
         <span></span>
@@ -39,6 +39,7 @@
     <div class="album-detail is-hidden" id="albumDetail">
         <button class="back-btn" id="backBtn">&#8592; Voltar</button>
 
+
         <div class="album-detail-header">
             <img id="detailCover" src="" alt="">
             <div class="album-detail-info">
@@ -53,9 +54,30 @@
         </ol>
     </div>
 
+    
+
     </main>
 
+<div class="player-bar is-hidden" id="playerBar">
+    <img id="playerCover" src="" alt="">
 
+    <div class="player-info">
+        <p id="playerTrackTitle"></p>
+        <p id="playerTrackArtist"></p>
+    </div>
+
+    <button class="play-pause-btn" id="playPauseBtn">&#9658;</button>
+
+    <div class="player-progress">
+        <span id="currentTime">0:00</span>
+        <input range type="range" id="progressBar" value="0" min="0" max="100">
+        <span id="duration">0:00</span>
+    </div>
+</div>
+
+<audio id="audioPlayer"></audio>
+
+    <script src="player.js"></script>
     <script src="dados.js"></script>
     <script src="discografia.js"></script>
 </body>

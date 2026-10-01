@@ -276,7 +276,10 @@
     }
 
     .is-hidden{
-        padding: 0 40px 80px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        position: absolute;
     }
 
     .back-btn{
@@ -316,3 +319,30 @@
         color: var(--accent);
         font-size: 15px;
     }
+
+
+
+    .track-item{
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 10px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.15s ease;
+    }
+
+    .track-item:hover {
+        background: var(--bg-elevated);
+}
+
+.track-number{
+    color: var(--text-muted);
+    font-size: 14px;
+    width: 20px;
+    text-align: right;
+}
+
+.track-title{
+    font-size: 15px;
+}
