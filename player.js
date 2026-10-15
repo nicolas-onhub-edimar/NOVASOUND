@@ -36,5 +36,13 @@ playPauseBtn.addEventListener('click', () => {
 });
 
 audio.addEventListener('timeupdate', () => {
-        
-})
+        if (audio.duration) {
+            progressBar.value = (audio.currentTime / audio.duration) * 100;
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+            durationEl.textContent = formatTime(audio.duration);
+        }
+});
+
+progressBar.addEventListener('input', () => {
+    audio.currentTime = (progressBar.value / 100) * audio.duration;
+});
