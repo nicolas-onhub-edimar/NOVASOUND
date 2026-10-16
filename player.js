@@ -3,7 +3,7 @@ const playerBar = document.getElementById('playerBar');
 const playerCover = document.getElementById('playerCover');
 const playerTrackTitle = document.getElementById('playerTrackTitle');
 const playerTrackArtist = document.getElementById('playerTrackArtist');
-const playPauseBtn = document.getElementById('progressBar');
+const playPauseBtn = document.getElementById('playPauseBtn');
 const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 
@@ -26,9 +26,10 @@ function playTrack(faixa, album){
 }
 
 playPauseBtn.addEventListener('click', () => {
+    console.log('botão clicado. Pausado?', audio.paused);
     if (audio.paused) {
         audio.play();
-        playPauseBtn.innerHTML = '&10073;&#10073;';
+        playPauseBtn.innerHTML = '&#10073;&#10073;';
     } else {
         audio.pause();
         playPauseBtn.innerHTML = '&#9658;';

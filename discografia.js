@@ -2,17 +2,20 @@ const grid = document.getElementById('albumGrid');
 const detail = document.getElementById('albumDetail');
 const backBtn = document.getElementById('backBtn');
 
-function renderTracklist(faixas) {
+function renderTracklist(album) {
     const list = document.getElementById('detailTracklist');
     list.innerHTML = '';
 
-    faixas.forEach((faixa) => {
+    album.faixas.forEach((faixa) => {
         const item = document.createElement('li');
         item.className = 'track-item';
         item.innerHTML = `
         <span class="track-number">${faixa.numero}</span>
         <span class="track-title">${faixa.titulo}</span>
         `;
+
+        item.addEventListener('click', () => playTrack(faixa, album));
+
         list.appendChild(item);
     });
 }
@@ -24,7 +27,7 @@ function showAlbum(album) {
     document.getElementById('detailArtist').textContent = album.artista;
     document.getElementById('detailYear').textContent = album.ano;
 
-    renderTracklist(album.faixas);
+    renderTracklist(album);
 
     grid.classList.add('is-hidden');
     detail.classList.remove('is-hidden');
