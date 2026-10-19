@@ -1,6 +1,8 @@
 const grid = document.getElementById('albumGrid');
 const detail = document.getElementById('albumDetail');
 const backBtn = document.getElementById('backBtn');
+const searchInput = document.getElementById('searchInput');
+
 
 function renderTracklist(album) {
     const list = document.getElementById('detailTracklist');
@@ -38,20 +40,41 @@ function showGrid() {
     grid.classList.remove('is-hidden');
 }
 
-albuns.forEach((album) => {
-    const card = document.createElement('div');
-    card.className = 'album-card';
 
-    card.innerHTML = `
-    <img src="${album.capa}" alt="Capa do álbum ${album.nome}, de ${album.artista}">
-    <h3>${album.nome}</h3>
-    <p class="album-artist">${album.artista}</p>
-    <p class="album-year">${album.ano}</p>
-    `;
 
-    card.addEventListener('click', () => showAlbum(album));
+function renderAlbums(lista) {
+    grid.innerHTML = '';
 
-    grid.appendChild(card);
-});
+    lista.forEach((album) => {
+        const card = document.createElement('div');
+        card.className = 'album-card';
+
+        card.innerHTML = `
+            <img src="${album.capa}" alt="Capa do álbum ${album.nome}, de ${album.artista}">
+            <h3>${album.nome}</h3>
+            <p class="album-artist">${album.artista}</p>
+            <p class="album-year">${album.ano}</p>
+        `;
+
+        card.addEventListener('click', () => showAlbum(album));
+        grid.appendChild(card);
+    });
+}
+
+searchInput.addEventListener('input', () => {
+    const pesquisa = searchInput.value.toLowerCase();
+
+    const resultado = albuns.filter((album) => {
+        return album.nome.toLowerCase().includes(pesquisa) ||
+            album.artista.toLowerCase().includes(pesquisa)
+    });
+
+    renderAlbums(resultado);
+})
+
+
+
+
+renderAlbums(albuns);
 
 backBtn.addEventListener('click', showGrid);
