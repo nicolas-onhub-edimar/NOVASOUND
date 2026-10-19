@@ -8,6 +8,7 @@ const previousBtn = document.getElementById('previousBtn');
 const nextBtn = document.getElementById('nextBtn');
 const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
+const volumeBar = document.getElementById('volumeBar');
 
 let albumAtual = null;
 let indiceFaixaAtual = -1;
@@ -88,4 +89,8 @@ audio.addEventListener('timeupdate', () => {
 
 progressBar.addEventListener('input', () => {
     audio.currentTime = (progressBar.value / 100) * audio.duration;
+});
+
+volumeBar.addEventListener('input', () => {
+    audio.volume = Number(volumeBar.value);
 });

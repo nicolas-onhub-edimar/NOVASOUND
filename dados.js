@@ -21,7 +21,7 @@ const albuns = [
             {numero: 1, titulo: "POP OUT", arquivo: "audio/MUSIC/POP OUT.mp3"},
         ]
     }
-,
+    ,
     {
         nome: "333",
         artista: "Matuê",
@@ -31,5 +31,15 @@ const albuns = [
             {numero: 1, titulo: "Crack com Mussilon", arquivo: "audio/333/Crack com Mussilon.mp3"},
         ]
 
+    }
+    ,
+    {
+        nome: "Mágica",
+        artista: "Calcinha Preta",
+        ano: 2005,
+        capa: "https://upload.wikimedia.org/wikipedia/pt/8/82/Calcinha_Preta_volume_12.jpg?utm_source=pt.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        faixas: [
+            {numero: 1, titulo: "Mágica", arquivo: "audio/Mágica/Magica.flac"},
+        ]
     }
 ]

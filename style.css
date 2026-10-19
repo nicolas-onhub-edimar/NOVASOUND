@@ -115,6 +115,30 @@
         font-size: 16px;
     }
 
+    #searchInput{
+        display: block;
+        width: min(420px, calc(100% - 80px));
+        margin: 0 40px 30px;
+        padding: 12px 16px;
+        font: inherit;
+        color: var(--text);
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #searchInput:placeholder{
+        color: var(--text-muted);
+    }
+
+    #searchInput:focus{
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(229, 0, 43, 0.18);
+    }
+
+    
 
     /* ---------- ARTIST GRID ---------- */
     /*.artist-grid {
@@ -395,6 +419,28 @@
     border-radius: 50%;
     cursor: pointer;
     font-size: 14px;
+}
+
+.player-control.btn{
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.player-control.btn:hover,
+.player-control.btn:focus-visible{
+    color: var(--text);
+    background: var(--accent);
+    border-color: var(--accent);
 }
 
 .player-progress{
