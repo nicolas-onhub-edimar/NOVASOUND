@@ -8,6 +8,7 @@ const albuns = [
             {numero: 1, titulo: "Studio Addict", arquivo: "audio/Studio Addict/Studio Addict.mp3"},
             {numero: 2, titulo: "Tokyo", arquivo: "audio/Studio Addict/Tokyo.flac"},
             {numero: 3, titulo: "F&N", arquivo: "audio/Studio Addict/F&N.flac"},
+            {numero: 4, titulo: "The Truth", arquivo: "audio/Studio Addict/The Truth.mp3"},
 
         ]
     }
