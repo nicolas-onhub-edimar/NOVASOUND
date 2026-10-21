@@ -13,17 +13,25 @@ const progressBar = document.getElementById('progressBar');
 
 
 let albumAtual = null;
-let audioPrecarregado = new Audio();
-audioPrecarregado.preload = 'auto';
-let indicePrecarregado = -1;
 let indiceFaixaAtual = -1;
 
-audioPrecarregado.addEventListener('canplay', () => {
-    console.log(
-        'A próxima faixa já pode começar. readyState:',
-        audioPrecarregado.readyState
-    );
-});
+const contextoAudio = new AudioContext();
+const controleVolume = contextoAudio.createGain();
+
+controleVolume.connect(contextoAudio.destination);
+
+let fonteAtual = null;
+let bufferAtual = null;
+let bufferSeguinte = null;
+let proximoIndiceCarregado = -1;
+let inicioDaFaixa = 0;
+let tempoPausado = 0;
+
+async function carregarBuffer(faixa){
+    const resposta = await fetch(faixa.arquivo);
+    const dadosDoArquivo = await resposta.arrayBuffer();
+    return await contextoAudio.decodeAudioData(dadosDoArquivo);
+}
 
 function formatTime(segundos) {
     const minutos = Math.floor(segundos / 60);
@@ -33,13 +41,28 @@ function formatTime(segundos) {
 
 
 
-function playTrack(faixa, album){
-    indicePrecarregado = -1;
+async function playTrack(faixa, album) {
+    if (fonteAtual) {
+        fonteAtual.stop();
+    }
+
+    await contextoAudio.resume();
+
     albumAtual = album;
     indiceFaixaAtual = album.faixas.indexOf(faixa);
+    bufferAtual = await carregarBuffer(faixa);
 
-    audio.src = faixa.arquivo;
-    audio.play();
+    fonteAtual = contextoAudio.createBufferSource();
+    fonteAtual.buffer = bufferAtual;
+    fonteAtual.connect(controleVolume);
+    fonteAtual.start();
+
+    inicioDaFaixa = contextoAudio.currentTime;
+    tempoPausado = 0;
+
+    fonteAtual.onended = () => {
+        proximaFaixa();
+    };
 
     playerCover.src = album.capa;
     playerTrackTitle.textContent = faixa.titulo;
@@ -49,57 +72,32 @@ function playTrack(faixa, album){
     playPauseBtn.innerHTML = '&#10073;&#10073;';
 }
 
-playPauseBtn.addEventListener('click', () => {
-    console.log('botÃ£o clicado. Pausado?', audio.paused);
-    if (audio.paused) {
-        audio.play();
-        playPauseBtn.innerHTML = '&#10073;&#10073;';
-    } else {
-        audio.pause();
+playPauseBtn.addEventListener('click', async () => {
+    if (contextoAudio.state === 'running') {
+        tempoPausado = contextoAudio.currentTime - inicioDaFaixa;
+        await contextoAudio.suspend();
         playPauseBtn.innerHTML = '&#9658;';
-    }
+    } else {
+        await contextoAudio.resume();
+        playPauseBtn.innerHTML = '&#10073;&#10073;';
+    };
 });
 
-function proximaFaixa() {
-    if(!albumAtual || albumAtual.faixas.length === 0) {
+async function proximaFaixa() {
+    if (!albumAtual || albumAtual.faixas.length === 0) {
         return;
     }
 
-    const proximoIndice =
+    const proximoIndice = 
         (indiceFaixaAtual + 1) % albumAtual.faixas.length;
+
     const faixaSeguinte = albumAtual.faixas[proximoIndice];
 
-    if (
-        indicePrecarregado === proximoIndice &&
-            audioPrecarregado.readyState >= 3
-    ) {
-        console.log(
-         'Trocando para o áudio pré-carregado. readyState:',
-         audioPrecarregado.readyState
-        );
-        audio.pause();
+    await playTrack(faixaSeguinte, albumAtual);
 
-        const audioAntigo = audio;
-        audio = audioPrecarregado;
-        audioPrecarregado = audioAntigo;
-
-        indiceFaixaAtual = proximoIndice;
-        indicePrecarregado = -1;
-
-        audio.volume = Number(volumeBar.value);
-        audio.play();
-
-        playerTrackTitle.textContent = faixaSeguinte.titulo;
-        playPauseBtn.innerHTML = '&#10073;&#10073;';
-        return;
-    }
-    console.log('Usando o carregamento normal. readyState:', audioPrecarregado.readyState);
-    playTrack(faixaSeguinte, albumAtual);
 }
 
 nextBtn.addEventListener('click', proximaFaixa);
-audio.addEventListener('ended', proximaFaixa);
-audioPrecarregado.addEventListener('ended', proximaFaixa);
 
 function faixaAnterior() {
     if (!albumAtual || albumAtual.faixas.length === 0) {
@@ -120,37 +118,38 @@ function faixaAnterior() {
 
 previousBtn.addEventListener('click', faixaAnterior);
 
+setInterval(async () => {
+    if (!bufferAtual || contextoAudio.state !== 'running') {
+        return;
+    }
 
-function atualizarTempo(evento){
-    if (evento.currentTarget !== audio) return;
-    if (!audio.duration) return;
+    const tempoDecorrido = contextoAudio.currentTime - inicioDaFaixa;
+    const segundosRestantes = bufferAtual.duration - tempoDecorrido;
 
-    progressBar.value = (audio.currentTime / audio.duration) * 100;
-    currentTimeEl.textContent = formatTime(audio.currentTime);
-    durationEl.textContent = formatTime(audio.duration);
+    progressBar.value = (tempoDecorrido / bufferAtual.duration) * 100;
+    currentTimeEl.textContent = formatTime(tempoDecorrido);
+    durationEl.textContent = formatTime(bufferAtual.duration);
 
-    const segundosRestantes = audio.duration - audio.currentTime;
-
-    if(segundosRestantes <= 6 && albumAtual && albumAtual.faixas.length > 0){
-        const proximoIndice =
+    if (
+        segundosRestantes <= 6 &&
+        albumAtual &&
+        albumAtual.faixas.length > 0
+    ) {
+        const proximoIndice = 
             (indiceFaixaAtual + 1) % albumAtual.faixas.length;
+        
+        if (proximoIndiceCarregado !== proximoIndice){
+            proximoIndiceCarregado = proximoIndice;
 
-        if (indicePrecarregado !== proximoIndice) {
-            audioPrecarregado.src = albumAtual.faixas[proximoIndice].arquivo;
-            audioPrecarregado.load();
-            indicePrecarregado = proximoIndice;
-            console.log('Usando a faixa pré-carregada. readyState: ', audioPrecarregado.readyState);
+            try {
+                bufferSeguinte = await carregarBuffer(
+                    albumAtual.faixas[proximoIndice]
+                );
+                console.log('Próxima faixa decodificada.');
+            } catch (erro) {
+                console.error('Erro ao decodificar a próxima faixa:', erro);
+                proximoIndiceCarregado = -1;
+            }
         }
     }
-}
-
-audio.addEventListener('timeupdate', atualizarTempo);
-audioPrecarregado.addEventListener('timeupdate', atualizarTempo);
-
-progressBar.addEventListener('input', () => {
-    audio.currentTime = (progressBar.value / 100) * audio.duration;
-});
-
-volumeBar.addEventListener('input', () => {
-    audio.volume = Number(volumeBar.value);
-});
+}, 100);
