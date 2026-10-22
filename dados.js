@@ -51,8 +51,14 @@ const albuns = [
         capa: 'https://akamai.sscdn.co/uploadfile/letras/albuns/d/d/c/b/4805511776354759.jpg',
         faixas: [
             {numero: 1, titulo: 'BENÇA', arquivo: 'audio/ISSO E TRAP 2/BENÇA.flac'},
-            {numero: 2, titulo: 'MILAGRE', arquivo: 'audio/ISSO E TRAP 2/MILAGRE.mp3'},
-            {numero: 3, titulo: 'FÓRMULAS & MIRAGENS', arquivo: 'audio/ISSO E TRAP 2/FÓRMULAS & MIRAGENS.flac'},
+            {numero: 2, titulo: 'OK', arquivo: 'audio/ISSO E TRAP 2/OK.flac'},
+            {numero: 3, titulo: 'PARIS', arquivo: 'audio/ISSO E TRAP 2/PARIS.flac'},
+            {numero: 4, titulo: 'WARZONE', arquivo: 'audio/ISSO E TRAP 2/WARZONE.flac'},
+            {numero: 5, titulo: 'BLUNT DE GOIABA', arquivo: 'audio/ISSO E TRAP 2/BLUNT DE GOIABA.flac'},
+            {numero: 6, titulo: 'JAQUETA BAPE', arquivo: 'audio/ISSO E TRAP 2/JAQUETA BAPE.flac'},
+            {numero: 7, titulo: 'MOOD', arquivo: 'audio/ISSO E TRAP 2/MOOD.flac'},
+            {numero: 8, titulo: 'MILAGRE', arquivo: 'audio/ISSO E TRAP 2/MILAGRE.flac'},
+            {numero: 9, titulo: 'FÓRMULAS & MIRAGENS', arquivo: 'audio/ISSO E TRAP 2/FÓRMULAS & MIRAGENS.flac'},
         ]
     }
 ]
