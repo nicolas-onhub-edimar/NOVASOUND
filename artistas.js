@@ -1,29 +1,17 @@
-const carousels = document.querySelectorAll('.artist-carousel');
+document.querySelectorAll('.artist-carousel').forEach((carousel) => {
+    const grid = carousel.querySelector('.artist-grid');
 
-carousels.forEach((carousel) => {
+    const scroll = (direction) => {
+        const card = grid.querySelector('.artist-card');
+        if (!card) return;
 
-const grid = carousel.querySelector('.artist-grid');
-const leftBtn = carousel.querySelector('.scroll-left');
-const rightBtn = carousel.querySelector('.scroll-right');
-const firstCard = grid.querySelector('.artist-card');
+        const gap = Number.parseFloat(getComputedStyle(grid).columnGap) || 0;
+        grid.scrollBy({
+            left: direction * (card.getBoundingClientRect().width + gap) * 2,
+            behavior: 'smooth',
+        });
+    };
 
-const cardWidth = firstCard.offsetWidth;
-const gap = parseInt(getComputedStyle(grid).columnGap);
-const scrollAmount = (cardWidth + gap) * 5;
-
-
-rightBtn.addEventListener('click', () => {
-    grid.scrollBy({ 
-        left: scrollAmount, 
-        behavior: 'smooth' 
-    });
-    
-});
-
-leftBtn.addEventListener('click', () => {
-    grid.scrollBy({ 
-        left: -scrollAmount,
-        behavior: 'smooth'});
-});
-
+    carousel.querySelector('.scroll-right')?.addEventListener('click', () => scroll(1));
+    carousel.querySelector('.scroll-left')?.addEventListener('click', () => scroll(-1));
 });

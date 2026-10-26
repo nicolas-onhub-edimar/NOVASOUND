@@ -3,147 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaSound©</title>
+    <meta name="description" content="Conheça artistas independentes em destaque na NovaSound.">
+    <title>Artistas — NovaSound</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 <header>
-   <a href="index.html" class="logo">
-      <img src="LOGO.png" alt="Logo NovaSound">
-      <span></span>
-   </a>
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="artistas.html">Artistas</a>
-    <a href="mais-tocadas.html">Mais tocadas</a>
-    <a href="novidades.html">Novidades</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="contato.html">Contato</a>
-  </nav>
+    <a href="index.html" class="logo"><img src="LOGO.png" alt="NovaSound — início"></a>
+    <nav aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="artistas.html" aria-current="page">Artistas</a>
+        <a href="discografia.html">Discografia</a>
+    </nav>
 </header>
+<main>
+    <section class="page-header">
+        <h1>Artistas</h1>
+        <p>Conheça quem está fazendo a cena independente acontecer.</p>
+    </section>
 
-    <main>
-        <section class="page-header">
-            <h1>Artistas</h1>
-            <p>Conheça quem está fazendo a cena independente acontecer.</p>
-        </section>
-        
-        <h2 class="section-title">Artistas Independentes</h2>
-        <section class="artist-carousel">
+    <h2 class="section-title">Artistas independentes</h2>
+    <section class="artist-carousel" aria-label="Artistas independentes">
+        <button class="scroll-btn scroll-left" type="button" aria-label="Ver artistas anteriores">&#8592;</button>
+        <div class="artist-grid">
+            <article class="artist-card"><img src="https://i.guim.co.uk/img/media/d3176f7f112fd498ecbbba5b4e7712d146a72ced/0_993_10110_6068/master/10110.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=07f41510bdfa2f67aaf2cc979cf09af9" alt="Royel Otis"><h3>Royel Otis</h3><p>Indie rock</p></article>
+            <article class="artist-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9UEbUhCq9cbKV9nQ4XM9Mab8F6Xxumv_qgYW6FVFT_dpyOWMfPqhiDGds&s=10" alt="Don L"><h3>Don L</h3><p>Rap</p></article>
+            <article class="artist-card"><img src="https://res.cloudinary.com/shotgun/image/upload/v1771903900/production/artworks/artists/ogbigrush.jpg" alt="Big Rush"><h3>Big Rush</h3><p>Trap</p></article>
+            <a class="artist-card" href="discografia.html?artista=Nine%20Vicious"><img src="https://images.genius.com/897a589773c8ca26bb7b3cd39fbcaa9e.500x500x1.jpg" alt="Nine Vicious"><h3>Nine Vicious</h3><p>Trap · Ouvir álbum</p></a>
+            <article class="artist-card"><img src="https://i.scdn.co/image/ab6761610000e5ebc9aca5b6d4c528caf75e8a1d" alt="Mac DeMarco"><h3>Mac DeMarco</h3><p>Indie rock</p></article>
+            <a class="artist-card" href="discografia.html?artista=Calcinha%20Preta"><img src="https://s2-g1.glbimg.com/mlIAb9VPbDKXYWcsAlcYhiTG9LM=/0x0:1200x883/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/l/x/Xjo6nhR5adoFyzRieBpA/calcinhapreta.jpg" alt="Calcinha Preta"><h3>Calcinha Preta</h3><p>Forró · Ouvir álbum</p></a>
+        </div>
+        <button class="scroll-btn scroll-right" type="button" aria-label="Ver mais artistas">&#8594;</button>
+    </section>
 
-          <div class="artist-grid">
-
-           <a href="#" class="artist-card">
-            <img src="https://i.guim.co.uk/img/media/d3176f7f112fd498ecbbba5b4e7712d146a72ced/0_993_10110_6068/master/10110.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=07f41510bdfa2f67aaf2cc979cf09af9" alt="Foto da dupla Royel Otis">
-            <h3>Royel Otis</h3>
-            <p>Indie Rock</p>
-          </a>
-
-          <a href="#" class="artist-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9UEbUhCq9cbKV9nQ4XM9Mab8F6Xxumv_qgYW6FVFT_dpyOWMfPqhiDGds&s=10" alt="Foto do Don L">
-            <h3>Don L</h3>
-            <p>Rap</p>
-          </a>
-
-          <a href="#" class="artist-card">
-            <img src="https://res.cloudinary.com/shotgun/image/upload/v1771903900/production/artworks/artists/ogbigrush.jpg" alt="Foto do Big Rush">
-            <h3>Big Rush</h3>
-            <p>Trap</p>
-          </a>
-          <a href="#" class="artist-card">
-            <img src="https://images.genius.com/897a589773c8ca26bb7b3cd39fbcaa9e.500x500x1.jpg" alt="Foto do Nine Vicious">
-            <h3>Nine Vicious</h3>
-            <p>Trap</p>
-          </a>
-
-          <a href="#" class="artist-card">
-            <img src="https://i.scdn.co/image/ab6761610000e5ebc9aca5b6d4c528caf75e8a1d" alt="Foto do Mac DeMarco">
-            <h3>Mac DeMarco</h3>
-            <p>Indie Rock</p> 
-          </a>
-
-          <a href="#" class="artist-card">
-            <img src="https://s2-g1.glbimg.com/mlIAb9VPbDKXYWcsAlcYhiTG9LM=/0x0:1200x883/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2020/l/x/Xjo6nhR5adoFyzRieBpA/calcinhapreta.jpg">
-            <h3>Calcinha Preta</h3>
-            <p>Forró</p>
-          </a>
-
-          </div>
-
-        <button class="scroll-btn scroll-left" aria-label="Ver artistas anteriores">
-          &#8592;
-        </button>
-
-        <button class="scroll-btn scroll-right" aria-label="Ver mais artistas">
-          &#8594;
-        </button>
-        
-
-        </section>
-
-        <h2 class="section-title">Artistas em Destaque</h2>
-        <section class="artist-carousel">
-          <button class="scroll-btn scroll-left" aria-label="Ver artistas anteriores">
-            &#8592;
-          </button>
-
-          <div class="artist-grid">
-            <a href="#" class="artist-card">
-              <img src="https://www.billboard.com/wp-content/uploads/2025/03/playboi-carti-rolling-loud-california-2025-billboard-1548.jpg?w=942&h=628&crop=1"
-              alt="Foto do Playboi Carti">
-              <h3>Playboi Carti</h3>
-              <p>Trap</p>
-            </a>
-            <a href="#" class="artist-card">
-              <img src="https://i.scdn.co/image/ab6761610000517481f47f44084e0a09b5f0fa13" alt="Foto do Bad Bunny">
-              <h3>Bad Bunny</h3>
-              <p>Reggaeton</p>
-            </a>
-            <a href="#" class="artist-card">
-              <img src="https://uploads.portalpopline.com.br/2025/09/apenas-uma-artista-barrar-justin-bieber-parada-estreia-singles-spotify-global.jpg">
-              <h3>Justin Bieber</h3>
-              <p>Pop</p>
-            </a>
-            <a href= # class="artist-card">
-              <img src="https://uploads.portalpopline.com.br/2026/02/shakira-capa-show.jpg" alt="Foto da Shakira">
-              <h3>Shakira</h3>
-              <p>Pop</p>
-            </a>
-            <a href= # class="artist-card">
-              <img src="https://uploads.portalpopline.com.br/2025/08/the-town-travis-scott-after-party-aberta-publico-sp.jpg" alt="Foto do Travis Scott">
-              <h3>Travis Scott</h3>
-              <p>Trap</p>
-            </a>
-            <a href= # class="artist-card">
-              <img src="https://f.i.uol.com.br/fotografia/2024/01/30/170661513265b8e15cd0500_1706615132_3x2_md.jpg" alt="Foto do Kanye West">
-              <h3>Kanye West (Ye)</h3>
-              <p>Rap</p>
-            </a>
-            <a href= # class="artist-card">
-              <img src="https://static.stealthelook.com.br/wp-content/uploads/2026/04/slayyyter-2-20260410210327.jpg" alt="Foto do Kanye West">
-              <h3>Slayyyter</h3>
-              <p>Pop</p>
-            </a>
-            </a>
-            <a href= # class="artist-card">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Brandao85.jpg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original" alt="Foto do Kanye West">
-              <h3>Brandão85</h3>
-              <p>Trap</p>
-            </a>
-            
-
-            <!-- adicionar mais artistas-->
-
-            <button class="scroll-btn scroll-right" aria-label="Ver mais artistas">
-              &#8594;
-            </button>
-          </div>
-        </section>
-
-    </main>
-
-
-    <script src="artistas.js"></script>
+    <h2 class="section-title">Em destaque</h2>
+    <section class="artist-carousel" aria-label="Artistas em destaque">
+        <button class="scroll-btn scroll-left" type="button" aria-label="Ver artistas anteriores">&#8592;</button>
+        <div class="artist-grid">
+            <article class="artist-card"><img src="https://www.billboard.com/wp-content/uploads/2025/03/playboi-carti-rolling-loud-california-2025-billboard-1548.jpg?w=942&h=628&crop=1" alt="Playboi Carti"><h3>Playboi Carti</h3><p>Trap</p></article>
+            <article class="artist-card"><img src="https://i.scdn.co/image/ab6761610000517481f47f44084e0a09b5f0fa13" alt="Bad Bunny"><h3>Bad Bunny</h3><p>Reggaeton</p></article>
+            <article class="artist-card"><img src="https://uploads.portalpopline.com.br/2025/09/apenas-uma-artista-barrar-justin-bieber-parada-estreia-singles-spotify-global.jpg" alt="Justin Bieber"><h3>Justin Bieber</h3><p>Pop</p></article>
+            <article class="artist-card"><img src="https://uploads.portalpopline.com.br/2026/02/shakira-capa-show.jpg" alt="Shakira"><h3>Shakira</h3><p>Pop</p></article>
+            <article class="artist-card"><img src="https://uploads.portalpopline.com.br/2025/08/the-town-travis-scott-after-party-aberta-publico-sp.jpg" alt="Travis Scott"><h3>Travis Scott</h3><p>Trap</p></article>
+            <article class="artist-card"><img src="https://f.i.uol.com.br/fotografia/2024/01/30/170661513265b8e15cd0500_1706615132_3x2_md.jpg" alt="Kanye West, também conhecido como Ye"><h3>Kanye West (Ye)</h3><p>Rap</p></article>
+            <article class="artist-card"><img src="https://static.stealthelook.com.br/wp-content/uploads/2026/04/slayyyter-2-20260410210327.jpg" alt="Slayyyter"><h3>Slayyyter</h3><p>Pop</p></article>
+            <a class="artist-card" href="discografia.html?artista=Brand%C3%A3o85"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Brandao85.jpg" alt="Brandão85"><h3>Brandão85</h3><p>Trap · Ouvir álbum</p></a>
+        </div>
+        <button class="scroll-btn scroll-right" type="button" aria-label="Ver mais artistas">&#8594;</button>
+    </section>
+</main>
+<script src="artistas.js"></script>
 </body>
 </html>

@@ -54,6 +54,7 @@ function atualizarInformacoesDaFaixa(faixa, album) {
     playerTrackArtist.textContent = album.artista;
     playerBar.classList.remove('is-hidden');
     playPauseBtn.innerHTML = '&#10073;&#10073;';
+    playPauseBtn.setAttribute('aria-label', 'Pausar');
 }
 
 function pararFonte(fonte) {
@@ -216,9 +217,11 @@ playPauseBtn.addEventListener('click', async () => {
     if (contextoAudio.state === 'running') {
         await contextoAudio.suspend();
         playPauseBtn.innerHTML = '&#9658;';
+        playPauseBtn.setAttribute('aria-label', 'Reproduzir');
     } else {
         await contextoAudio.resume();
         playPauseBtn.innerHTML = '&#10073;&#10073;';
+        playPauseBtn.setAttribute('aria-label', 'Pausar');
     }
 });
 
