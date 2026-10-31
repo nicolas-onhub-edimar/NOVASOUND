@@ -3,29 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novidades — NovaSound</title>
+    <meta name="description" content="Confira os lançamentos disponíveis na NovaSound e descubra novos sons independentes.">
+    <title>Lançamentos — NovaSound</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <header>
     <a href="index.html" class="logo">
-        <img src="LOGO.png" alt="Logo NovaSound">
-        <span></span>
+        <img src="LOGO.png" alt="NovaSound — início">
     </a>
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="artistas.html">Artistas</a>
-    <a href="discografia.html">Discografia</a>
-  </nav>
+    <nav aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="novidades.html" aria-current="page">Lançamentos</a>
+        <a href="discografia.html">Discografia</a>
+    </nav>
 </header>
 
-    <main>
-        <section class="hero">
-            <h1>Novidades</h1>
-            <p>Os novos lançamentos serão anunciados aqui. Veja agora os álbuns disponíveis.</p>
-            <div class="hero-actions"><a href="discografia.html" class="btn-primary">Explorar álbuns</a></div>
-        </section>
-    </main>
+<main class="releases-page">
+    <section class="page-header releases-heading">
+        <p class="releases-kicker">NOVIDADES NA NOVASOUND</p>
+        <h1>Lançamentos</h1>
+        <p>Novos sons e projetos para descobrir. Escolha um álbum e explore a discografia do artista.</p>
+    </section>
+
+    <section id="featuredRelease" class="release-feature" aria-label="Lançamento em destaque"></section>
+
+    <section class="release-list-section" aria-labelledby="releaseListTitle">
+        <div class="release-section-heading">
+            <div>
+                <p class="releases-kicker">DO MAIS RECENTE AO CATÁLOGO</p>
+                <h2 id="releaseListTitle">Mais lançamentos</h2>
+            </div>
+            <p>Uma seleção de álbuns disponíveis para ouvir.</p>
+        </div>
+        <div id="releaseGrid" class="release-grid"></div>
+        <p id="releaseEmptyState" class="empty-state is-hidden" role="status">Ainda não há lançamentos cadastrados.</p>
+    </section>
+</main>
+
+<script src="dados.js"></script>
+<script src="novidades.js"></script>
 </body>
 </html>

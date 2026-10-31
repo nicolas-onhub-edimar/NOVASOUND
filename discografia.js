@@ -117,20 +117,55 @@ function renderAlbums(lista) {
     grid.innerHTML = '';
     emptyState.classList.toggle('is-hidden', lista.length > 0);
 
+    const albunsPorGenero = new Map();
+
     lista.forEach((album) => {
-        const card = document.createElement('button');
-        card.type = 'button';
-        card.className = 'album-card';
+        const generosDoAlbum = album.generos?.length ? album.generos : ['Outros'];
 
-        card.innerHTML = `
-            <img src="${album.capa}" alt="Capa do álbum ${album.nome}, de ${album.artista}">
-            <h3>${album.nome}</h3>
-            <p class="album-artist">${album.artista}</p>
-            <p class="album-year">${album.ano}</p>
-        `;
+        generosDoAlbum.forEach((genero) => {
+            if (!albunsPorGenero.has(genero)) {
+                albunsPorGenero.set(genero, []);
+            }
 
-        card.addEventListener('click', () => showAlbum(album, card.querySelector('img')));
-        grid.appendChild(card);
+            albunsPorGenero.get(genero).push(album);
+        });
+    });
+
+    const gruposOrdenados = [...albunsPorGenero.entries()].sort(([generoA], [generoB]) =>
+        generoA.localeCompare(generoB, 'pt-BR')
+    );
+
+    gruposOrdenados.forEach(([genero, albunsDoGenero]) => {
+        const secao = document.createElement('section');
+        secao.className = 'genre-section';
+
+        const titulo = document.createElement('h2');
+        titulo.className = 'genre-title';
+        titulo.textContent = genero;
+        titulo.id = `genre-${genero.toLocaleLowerCase('pt-BR').replaceAll(' ', '-')}`;
+        secao.setAttribute('aria-labelledby', titulo.id);
+
+        const grade = document.createElement('div');
+        grade.className = 'album-grid';
+
+        albunsDoGenero.forEach((album) => {
+            const card = document.createElement('button');
+            card.type = 'button';
+            card.className = 'album-card';
+
+            card.innerHTML = `
+                <img src="${album.capa}" alt="Capa do álbum ${album.nome}, de ${album.artista}">
+                <h3>${album.nome}</h3>
+                <p class="album-artist">${album.artista}</p>
+                <p class="album-year">${album.ano}</p>
+            `;
+
+            card.addEventListener('click', () => showAlbum(album, card.querySelector('img')));
+            grade.appendChild(card);
+        });
+
+        secao.append(titulo, grade);
+        grid.appendChild(secao);
     });
 }
 

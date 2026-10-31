@@ -17,6 +17,7 @@
   <nav>
     <a href="index.html">Início</a>
     <a href="artistas.html">Artistas</a>
+    <a href="novidades.html">Lançamentos</a>
     <a href="discografia.html" aria-current="page">Discografia</a>
   </nav>    
 </header>
@@ -27,11 +28,30 @@
             <p>Álbuns disponíveis para ouvir.</p>
         </section>
 
+        <div class="featured-section-toggle-row">
+            <button id="toggleFeaturedSection" class="featured-section-toggle" type="button" aria-controls="featuredAlbumsSection" aria-expanded="true">Ocultar álbuns em destaque</button>
+        </div>
+        <section id="featuredAlbumsSection" class="featured-albums" aria-labelledby="featuredAlbumsTitle">
+            <div class="featured-albums-heading">
+                <div>
+                    <p class="releases-kicker">ESCOLHAS DA NOVASOUND</p>
+                    <h2 id="featuredAlbumsTitle">Álbuns em destaque</h2>
+                </div>
+                <div class="featured-albums-controls" id="featuredAlbumsControls">
+                    <button class="featured-albums-control" id="featuredPrevious" type="button" aria-label="Álbum em destaque anterior">&#8592;</button>
+                    <button class="featured-albums-control featured-albums-toggle" id="featuredToggle" type="button" aria-label="Pausar rotação automática" aria-pressed="false">&#10074;&#10074;</button>
+                    <button class="featured-albums-control" id="featuredNext" type="button" aria-label="Próximo álbum em destaque">&#8594;</button>
+                </div>
+            </div>
+            <div id="featuredAlbumSlide" class="featured-album-slide" aria-live="off"></div>
+            <div id="featuredAlbumDots" class="featured-album-dots" aria-label="Escolher álbum em destaque"></div>
+        </section>
+
         <label class="visually-hidden" for="searchInput">Buscar álbum ou artista</label>
         <input type="search" id="searchInput" placeholder="Buscar álbum ou artista...">
         <p class="empty-state is-hidden" id="emptyState" role="status">Nenhum álbum encontrado.</p>
 
-            <div class="album-grid" id="albumGrid">
+            <div class="genre-sections" id="albumGrid">
         
     </div>
 
@@ -100,6 +120,7 @@
 
     <script src="player.js"></script>
     <script src="dados.js"></script>
+    <script src="destaques.js"></script>
     <script src="discografia.js"></script>
 </body>
 </html>
