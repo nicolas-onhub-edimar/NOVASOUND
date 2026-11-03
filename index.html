@@ -16,21 +16,83 @@
         <span></span>
     </a>
   <nav>
-    <a href="index.html">Início</a>
-    <a href="artistas.html">Artistas</a>
-    <a href="novidades.html">Lançamentos</a>
-    <a href="discografia.html">Discografia</a>
+        <a href="index.html" aria-current="page">Início</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="novidades.html">Lançamentos</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="discografia.html">Discografia</a>
+        <a href="mais-tocadas.html">Mais tocadas</a>
+        <a href="contato.html">Contato</a>
   </nav>
 </header>
             
 
     <main>
-        <section class="hero">
-            <h1>Música independente, sem filtro.</h1>
-            <p>Descubra artistas emergentes antes de todo o mundo.</p>
-            <div class="hero-actions">
-                <a href="artistas.html" class="btn-primary">Explorar artistas</a>
-                <a href="discografia.html" class="btn-secondary">Ouvir agora</a>
+        <section class="home-welcome" aria-labelledby="homeWelcomeTitle">
+            <div class="home-welcome-copy">
+                <p class="home-welcome-kicker">CONHEÇA A NOVASOUND</p>
+                <h1 id="homeWelcomeTitle">Um novo som pode abrir um mundo inteiro.</h1>
+                <p>Uma plataforma gratuita para explorar artistas independentes, conhecer seus álbuns e ouvir música em um só lugar.</p>
+            </div>
+            <div class="home-welcome-art" aria-hidden="true">
+                <span class="home-sound-glow"></span>
+                <div class="home-sound-visual">
+                    <span class="home-sound-play"></span>
+                    <div class="home-sound-bars">
+                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    </div>
+                </div>
+                <span class="home-sound-label">SOM NOVO, DO SEU JEITO</span>
+                <span class="home-welcome-art-caption">OUÇA · DESCUBRA · COMPARTILHE</span>
+            </div>
+        </section>
+
+        <section class="hero inicio-hero">
+            <div class="home-hero-copy">
+                <p class="home-hero-kicker">PARA QUEM TEM RADAR MUSICAL</p>
+                <h2>Você sempre manda a música nova antes de todo mundo?</h2>
+                <p class="home-hero-description">A NovaSound é para quem gosta de descobrir sons independentes e compartilhar a próxima obsessão.</p>
+                <div class="hero-actions">
+                    <a href="artistas.html" class="btn-primary">Encontrar novos artistas</a>
+                    <a href="discografia.html" class="btn-secondary">Explorar álbuns</a>
+                </div>
+            </div>
+
+            <div class="home-share-scene" aria-hidden="true">
+                <div class="home-scene-orbit home-scene-orbit-one"></div>
+                <div class="home-scene-orbit home-scene-orbit-two"></div>
+                <div class="home-chat-card">
+                    <div class="home-chat-heading">
+                        <span class="home-chat-avatar">N</span>
+                        <span><strong>radar de novidades</strong><small>seu grupo de música</small></span>
+                        <span class="home-chat-dots">•••</span>
+                    </div>
+                    <p class="home-chat-bubble home-chat-bubble-sent">gente, achei uma música nova</p>
+                    <p class="home-chat-bubble home-chat-bubble-received">manda! quem é?</p>
+                    <div class="home-chat-discovery">
+                        <span class="home-chat-play">▶</span>
+                        <span><strong>uma descoberta sua</strong><small>artista independente · NovaSound</small></span>
+                    </div>
+                    <div class="home-wave">
+                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    </div>
+                </div>
+                <span class="home-scene-caption">OUVI PRIMEIRO. COMPARTILHEI DEPOIS.</span>
+            </div>
+
+            <div class="home-hero-highlights" aria-label="O que você encontra na NovaSound">
+                <article class="home-highlight">
+                    <span class="home-highlight-icon home-highlight-icon-price" aria-hidden="true">R$0</span>
+                    <div><h2>Acesso gratuito</h2><p>Explore o catálogo sem custo.</p></div>
+                </article>
+                <article class="home-highlight">
+                    <span class="home-highlight-icon home-highlight-icon-search" aria-hidden="true">⌕</span>
+                    <div><h2>Busca no catálogo</h2><p>Encontre artistas e álbuns.</p></div>
+                </article>
+                <article class="home-highlight">
+                    <span class="home-highlight-icon" aria-hidden="true">▶</span>
+                    <div><h2>Player integrado</h2><p>Ouça sem sair do site.</p></div>
+                </article>
             </div>
         </section>
     </main>

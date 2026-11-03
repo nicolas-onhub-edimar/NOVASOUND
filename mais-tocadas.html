@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore faixas em destaque no catálogo da NovaSound.">
     <title>Mais tocadas — NovaSound</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,23 +11,51 @@
 <body>
 <header>
     <a href="index.html" class="logo">
-        <img src="LOGO.png" alt="Logo NovaSound">
-        <span></span>
+        <img src="LOGO.png" alt="NovaSound — início">
     </a>
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="artistas.html">Artistas</a>
-    <a href="novidades.html">Lançamentos</a>
-    <a href="discografia.html">Discografia</a>
-  </nav>    
+    <nav aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="novidades.html">Lançamentos</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="discografia.html">Discografia</a>
+        <a href="mais-tocadas.html" aria-current="page">Mais tocadas</a>
+        <a href="contato.html">Contato</a>
+    </nav>
 </header>
 
-    <main>
-        <section class="hero">
-            <h1>Mais tocadas</h1>
-            <p>Esta seleção ainda está sendo preparada. Enquanto isso, explore os álbuns disponíveis.</p>
-            <div class="hero-actions"><a href="discografia.html" class="btn-primary">Ver discografia</a></div>
-        </section>
-    </main>
+<main class="most-played-page">
+    <section class="most-played-heading">
+        <p class="releases-kicker">NO RADAR NOVASOUND</p>
+        <h1>Mais tocadas</h1>
+        <p>Faixas mais famosas do nosso catálogo.</p>
+    </section>
+
+    <section class="most-played-feature" aria-label="Sobre esta seleção">
+        <div class="most-played-feature-mark" aria-hidden="true">♫</div>
+        <div>
+            <p class="most-played-feature-label">SELEÇÃO DO CATÁLOGO</p>
+            <h2>Um som para colocar no repeat</h2>
+            <p>Esta seleção é provisória e organizada pela equipe. O ranking por reproduções reais será conectado quando o banco de dados estiver pronto.</p>
+        </div>
+    </section>
+
+    <section class="most-played-list-section" aria-labelledby="mostPlayedTitle">
+        <div class="most-played-list-heading">
+            <div>
+                <p class="releases-kicker">ESCOLHA SEU PRÓXIMO SOM</p>
+                <h2 id="mostPlayedTitle">Faixas mais tocadas</h2>
+            </div>
+            <a class="most-played-all-link" href="discografia.html">Ver discografia <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div id="trackFilters" class="most-played-filters" aria-label="Filtrar faixas por gênero"></div>
+        <ol id="mostPlayedList" class="most-played-list"></ol>
+        <p id="mostPlayedEmpty" class="empty-state is-hidden" role="status">Não há faixas cadastradas neste gênero ainda.</p>
+    </section>
+</main>
+
+<script src="dados.js"></script>
+<script src="mais-tocadas.js"></script>
 </body>
 </html>

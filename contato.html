@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entre em contato com a NovaSound para falar sobre artistas, álbuns e sugestões para o projeto.">
     <title>Contato — NovaSound</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,22 +11,107 @@
 <body>
 <header>
     <a href="index.html" class="logo">
-        <img src="LOGO.png" alt="Logo NovaSound">
-        <span></span>
+        <img src="LOGO.png" alt="NovaSound — início">
     </a>
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="artistas.html">Artistas</a>
-    <a href="novidades.html">Lançamentos</a>
-    <a href="discografia.html">Discografia</a>
-  </nav>
+    <nav aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="novidades.html">Lançamentos</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="discografia.html">Discografia</a>
+        <a href="mais-tocadas.html">Mais tocadas</a>
+        <a href="contato.html" aria-current="page">Contato</a>
+    </nav>
 </header>
 
-    <main>
-        <section class="hero">
-            <h1>Contato</h1>
-            <p>O canal de contato da NovaSound será divulgado em breve.</p>
-        </section>
-    </main>
+<main class="contact-page">
+    <section class="contact-hero">
+        <div>
+            <p class="contact-kicker">FALE COM A NOVASOUND</p>
+            <h1>Tem uma ideia ou quer falar de música?</h1>
+            <p>Este espaço é para sugestões sobre o site, informações de artistas e correções no catálogo.</p>
+        </div>
+        <div class="contact-hero-mark" aria-hidden="true">NS<span>♪</span></div>
+    </section>
+
+    <section class="contact-content" aria-labelledby="contactFormTitle">
+        <div class="contact-form-panel">
+            <p class="contact-kicker">SUA MENSAGEM</p>
+            <h2 id="contactFormTitle">Como podemos ajudar?</h2>
+            <p class="contact-form-intro">Preencha os campos abaixo. O envio será habilitado quando a etapa do banco de dados estiver pronta.</p>
+
+            <form class="contact-form">
+                <div class="contact-fields-row">
+                    <div class="contact-field">
+                        <label for="contactName">Seu nome</label>
+                        <input id="contactName" name="nome" type="text" placeholder="Como podemos chamar você?" autocomplete="name">
+                    </div>
+                    <div class="contact-field">
+                        <label for="contactEmail">Seu e-mail</label>
+                        <input id="contactEmail" name="email" type="email" placeholder="voce@exemplo.com" autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="contact-field">
+                    <label for="contactSubject">Assunto</label>
+                    <select id="contactSubject" name="assunto">
+                        <option value="" selected disabled>Selecione um assunto</option>
+                        <option value="artista">Quero indicar um artista</option>
+                        <option value="catalogo">Informação ou correção no catálogo</option>
+                        <option value="bug">Quero reportar um bug</option>
+                        <option value="sugestao">Sugestão sobre o site</option>
+                        <option value="outro">Outro assunto</option>
+                    </select>
+                </div>
+
+                <div class="contact-field">
+                    <label for="contactMessage">Mensagem</label>
+                    <textarea id="contactMessage" name="mensagem" rows="5" placeholder="Escreva sua mensagem..."></textarea>
+                </div>
+
+                <button class="contact-submit" type="button" disabled>Envio em breve</button>
+            </form>
+        </div>
+
+        <aside class="contact-side-panel" aria-label="Informações para sua mensagem">
+            <div class="contact-side-heading">
+                <span class="contact-side-icon" aria-hidden="true">♫</span>
+                <div>
+                    <p class="contact-kicker">O QUE VOCÊ PODE ENVIAR</p>
+                    <h2>Vamos manter o catálogo vivo.</h2>
+                </div>
+            </div>
+
+            <article class="contact-topic">
+                <span>01</span>
+                <div>
+                    <h3>Indicação de artista</h3>
+                    <p>Conte para a gente sobre artistas independentes que merecem ser descobertos.</p>
+                </div>
+            </article>
+            <article class="contact-topic">
+                <span>02</span>
+                <div>
+                    <h3>Atualização do catálogo</h3>
+                    <p>Avise se encontrar algum dado de álbum ou faixa que precisa de correção.</p>
+                </div>
+            </article>
+            <article class="contact-topic">
+                <span>03</span>
+                <div>
+                    <h3>Reportar um bug</h3>
+                    <p>Descreva o que aconteceu e em qual página para ajudar a identificar o problema.</p>
+                </div>
+            </article>
+            <article class="contact-topic">
+                <span>04</span>
+                <div>
+                    <h3>Ideias e sugestões</h3>
+                    <p>Compartilhe o que tornaria sua experiência na NovaSound ainda melhor.</p>
+                </div>
+            </article>
+        </aside>
+    </section>
+</main>
 </body>
 </html>

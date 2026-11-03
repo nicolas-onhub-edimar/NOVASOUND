@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça a NovaSound, um projeto para descobrir artistas independentes e explorar seus álbuns.">
     <title>Sobre — NovaSound</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,23 +11,79 @@
 <body>
 <header>
     <a href="index.html" class="logo">
-        <img src="LOGO.png" alt="Logo NovaSound">
-        <span></span>
+        <img src="LOGO.png" alt="NovaSound — início">
     </a>
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="artistas.html">Artistas</a>
-    <a href="novidades.html">Lançamentos</a>
-    <a href="discografia.html">Discografia</a>
-  </nav>
+    <nav aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="novidades.html">Lançamentos</a>
+        <a href="sobre.html" aria-current="page">Sobre</a>
+        <a href="discografia.html">Discografia</a>
+        <a href="mais-tocadas.html">Mais tocadas</a>
+        <a href="contato.html">Contato</a>
+    </nav>
 </header>
 
-    <main>
-        <section class="hero">
-            <h1>Sobre a NovaSound</h1>
-            <p>A NovaSound é um catálogo independente para descobrir artistas e ouvir os álbuns disponíveis no projeto.</p>
-            <div class="hero-actions"><a href="artistas.html" class="btn-primary">Conhecer artistas</a></div>
-        </section>
-    </main>
+<main class="about-page">
+    <section class="about-hero">
+        <div class="about-hero-copy">
+            <p class="releases-kicker">SOBRE A NOVASOUND</p>
+            <h1>Mais espaço para descobrir música independente.</h1>
+            <p>A NovaSound é um projeto de catálogo musical criado para aproximar ouvintes de artistas independentes e dos álbuns que eles lançam.</p>
+            <a class="btn-primary" href="artistas.html">Conhecer os artistas</a>
+        </div>
+        <div class="about-hero-art" aria-hidden="true">
+            <span class="about-note about-note-one">♫</span>
+            <span class="about-note about-note-two">♪</span>
+            <span class="about-orbit about-orbit-one"></span>
+            <span class="about-orbit about-orbit-two"></span>
+            <span class="about-hero-word">NOVA<br>SOUND</span>
+        </div>
+    </section>
+
+    <section class="about-purpose" aria-labelledby="aboutPurposeTitle">
+        <div class="about-section-label">
+            <span>01</span>
+            <p>O PROPÓSITO</p>
+        </div>
+        <div class="about-purpose-copy">
+            <h2 id="aboutPurposeTitle">Descobrir sons fora do óbvio.</h2>
+            <p>Encontrar artistas novos nem sempre é simples. A NovaSound organiza artistas, álbuns e faixas em um só lugar, com navegação fácil e acesso gratuito ao catálogo disponível no projeto.</p>
+            <p>A proposta é dar visibilidade a diferentes trajetórias musicais e tornar a descoberta parte da experiência de ouvir.</p>
+        </div>
+    </section>
+
+    <section class="about-steps" aria-labelledby="aboutStepsTitle">
+        <div class="about-steps-heading">
+            <p class="releases-kicker">COMO EXPLORAR</p>
+            <h2 id="aboutStepsTitle">Do artista à faixa, sem complicação.</h2>
+        </div>
+        <div class="about-step-grid">
+            <article class="about-step-card">
+                <span>01</span>
+                <h3>Encontre um artista</h3>
+                <p>Explore a página de artistas ou use a busca da discografia para encontrar quem você quer ouvir.</p>
+            </article>
+            <article class="about-step-card">
+                <span>02</span>
+                <h3>Escolha um álbum</h3>
+                <p>Veja as capas, conheça os projetos disponíveis e abra a lista de faixas de cada álbum.</p>
+            </article>
+            <article class="about-step-card">
+                <span>03</span>
+                <h3>Dê o play</h3>
+                <p>Use o player para reproduzir uma faixa e navegar entre as músicas do álbum.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="about-final-callout">
+        <div>
+            <p class="releases-kicker">TEM SEMPRE ALGO NOVO PARA OUVIR</p>
+            <h2>Explore o catálogo da NovaSound.</h2>
+        </div>
+        <a class="btn-primary" href="discografia.html">Abrir discografia</a>
+    </section>
+</main>
 </body>
 </html>
