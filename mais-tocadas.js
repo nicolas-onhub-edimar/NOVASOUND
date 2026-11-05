@@ -1,10 +1,12 @@
+await window.albunsPromise;
+
 const listaMaisTocadas = document.getElementById('mostPlayedList');
 const filtrosMaisTocadas = document.getElementById('trackFilters');
 const vazioMaisTocadas = document.getElementById('mostPlayedEmpty');
 
 // Enquanto não existe contagem de reproduções, usamos uma seleção editorial:
 // álbuns mais recentes primeiro e faixas na ordem em que aparecem no álbum.
-const faixasEmDestaque = albuns
+const faixasEmDestaque = window.albuns
     .slice()
     .sort((albumA, albumB) => albumB.ano - albumA.ano)
     .flatMap((album) => album.faixas.map((faixa) => ({ album, faixa })));

@@ -1,3 +1,5 @@
+await window.albunsPromise;
+
 const grid = document.getElementById('albumGrid');
 const detail = document.getElementById('albumDetail');
 const backBtn = document.getElementById('backBtn');
@@ -5,7 +7,10 @@ const searchInput = document.getElementById('searchInput');
 const searchLabel = document.querySelector('label[for="searchInput"]');
 const emptyState = document.getElementById('emptyState');
 const detailCover = document.getElementById('detailCover');
-const albumQuery = new URLSearchParams(window.location.search).get('artista') || '';
+const parametrosDiscografia = new URLSearchParams(window.location.search);
+const albumQuery = parametrosDiscografia.get('artista') || '';
+const nomeAlbumSolicitado = parametrosDiscografia.get('album') || '';
+const nomeFaixaSolicitada = parametrosDiscografia.get('faixa') || '';
 searchInput.value = albumQuery;
 let cancelarAnimacaoDaCapa = null;
 
@@ -25,6 +30,10 @@ function renderTracklist(album) {
         `;
 
         item.querySelector('.track-select').addEventListener('click', () => playTrack(faixa, album));
+
+        if (window.adicionarBotaoCurtida) {
+            window.adicionarBotaoCurtida(item, faixa, album);
+        }
 
         list.appendChild(item);
     });
@@ -172,7 +181,7 @@ function renderAlbums(lista) {
 searchInput.addEventListener('input', () => {
     const pesquisa = searchInput.value.trim().toLocaleLowerCase('pt-BR');
 
-    const resultado = albuns.filter((album) => {
+    const resultado = window.albuns.filter((album) => {
         return album.nome.toLocaleLowerCase('pt-BR').includes(pesquisa) ||
             album.artista.toLocaleLowerCase('pt-BR').includes(pesquisa)
     });
@@ -183,8 +192,26 @@ searchInput.addEventListener('input', () => {
 
 
 
-renderAlbums(albuns.filter((album) =>
+renderAlbums(window.albuns.filter((album) =>
     album.artista.toLocaleLowerCase('pt-BR').includes(albumQuery.trim().toLocaleLowerCase('pt-BR'))
 ));
 
 backBtn.addEventListener('click', showGrid);
+
+if (nomeAlbumSolicitado) {
+    const albumSolicitado = window.albuns.find((album) =>
+        album.nome.toLocaleLowerCase('pt-BR') === nomeAlbumSolicitado.toLocaleLowerCase('pt-BR') &&
+        (!albumQuery || album.artista.toLocaleLowerCase('pt-BR') === albumQuery.toLocaleLowerCase('pt-BR'))
+    );
+
+    if (albumSolicitado) {
+        showAlbum(albumSolicitado);
+        if (nomeFaixaSolicitada) {
+            const faixaSolicitada = [...document.querySelectorAll('.track-item')].find((item) =>
+                item.querySelector('.track-title')?.textContent.toLocaleLowerCase('pt-BR') === nomeFaixaSolicitada.toLocaleLowerCase('pt-BR')
+            );
+            faixaSolicitada?.classList.add('search-match-track');
+            faixaSolicitada?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+}

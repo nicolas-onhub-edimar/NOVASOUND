@@ -1,3 +1,5 @@
+await window.albunsPromise;
+
 const secaoDestaques = document.getElementById('featuredAlbumsSection');
 const botaoAlternarSecaoDestaques = document.getElementById('toggleFeaturedSection');
 const areaDestaques = document.querySelector('.featured-albums');
@@ -9,7 +11,7 @@ const botaoDestaqueSeguinte = document.getElementById('featuredNext');
 const botaoPausarDestaque = document.getElementById('featuredToggle');
 
 const chaveVisibilidadeDestaques = 'novasound-destaques-visiveis';
-const albunsEmDestaque = [...albuns].sort((albumA, albumB) => albumB.ano - albumA.ano);
+const albunsEmDestaque = [...window.albuns].sort((albumA, albumB) => albumB.ano - albumA.ano);
 const intervaloDestaque = 6000;
 let secaoDestaquesVisivel = lerVisibilidadeDestaques();
 let indiceDestaqueAtual = 0;
@@ -162,10 +164,16 @@ areaDestaques.addEventListener('focusout', (evento) => {
     if (!areaDestaques.contains(evento.relatedTarget)) iniciarRotacaoDestaque();
 });
 
-document.addEventListener('visibilitychange', () => {
+function atualizarRotacaoPorVisibilidade() {
     if (document.hidden) pararRotacaoDestaque();
     else iniciarRotacaoDestaque();
-});
+}
+
+document.addEventListener('visibilitychange', atualizarRotacaoPorVisibilidade);
+window.addEventListener('novasound:before-navigate', () => {
+    pararRotacaoDestaque();
+    document.removeEventListener('visibilitychange', atualizarRotacaoPorVisibilidade);
+}, { once: true });
 
 atualizarBotaoDaSecao();
 

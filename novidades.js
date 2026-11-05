@@ -1,3 +1,5 @@
+await window.albunsPromise;
+
 const destaqueLancamento = document.getElementById('featuredRelease');
 const gradeLancamentos = document.getElementById('releaseGrid');
 const estadoVazioLancamentos = document.getElementById('releaseEmptyState');
@@ -88,7 +90,7 @@ function criarCartaoLancamento(album) {
 }
 
 function renderizarLancamentos() {
-    const lancamentos = [...albuns].sort((albumA, albumB) => albumB.ano - albumA.ano);
+    const lancamentos = [...window.albuns].sort((albumA, albumB) => albumB.ano - albumA.ano);
 
     if (lancamentos.length === 0) {
         estadoVazioLancamentos.classList.remove('is-hidden');

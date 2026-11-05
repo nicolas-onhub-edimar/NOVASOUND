@@ -9,6 +9,12 @@ const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const volumeBar = document.getElementById('volumeBar');
 const progressBar = document.getElementById('progressBar');
+const queueToggleBtn = document.getElementById('queueToggleBtn');
+const queuePanel = document.getElementById('queuePanel');
+const queueCloseBtn = document.getElementById('queueCloseBtn');
+const queueCurrentTrack = document.getElementById('queueCurrentTrack');
+const queueTrackList = document.getElementById('queueTrackList');
+const queueEmptyState = document.getElementById('queueEmptyState');
 
 let albumAtual = null;
 let indiceFaixaAtual = -1;
@@ -51,10 +57,56 @@ function formatTime(segundos) {
 function atualizarInformacoesDaFaixa(faixa, album) {
     playerCover.src = album.capa;
     playerTrackTitle.textContent = faixa.titulo;
-    playerTrackArtist.textContent = album.artista;
+    playerTrackArtist.textContent = faixa.artista || album.artista;
     playerBar.classList.remove('is-hidden');
     playPauseBtn.innerHTML = '&#10073;&#10073;';
     playPauseBtn.setAttribute('aria-label', 'Pausar');
+    atualizarFila();
+}
+
+function atualizarFila() {
+    if (!queueTrackList) return;
+
+    queueTrackList.innerHTML = '';
+
+    if (!albumAtual || indiceFaixaAtual < 0 || !albumAtual.faixas[indiceFaixaAtual]) {
+        queueCurrentTrack.textContent = 'Nenhuma faixa tocando.';
+        queueEmptyState.textContent = 'Reproduza uma música para ver as próximas faixas.';
+        queueEmptyState.hidden = false;
+        return;
+    }
+
+    const faixaAtual = albumAtual.faixas[indiceFaixaAtual];
+    queueCurrentTrack.textContent = `Tocando agora · ${faixaAtual.titulo} — ${faixaAtual.artista || albumAtual.artista}`;
+
+    const faixasFuturas = [];
+    for (let distancia = 1; distancia < albumAtual.faixas.length; distancia++) {
+        const indice = (indiceFaixaAtual + distancia) % albumAtual.faixas.length;
+        faixasFuturas.push({ faixa: albumAtual.faixas[indice], indice });
+    }
+
+    queueEmptyState.hidden = faixasFuturas.length > 0;
+    queueEmptyState.textContent = 'Não há outras faixas nesta fila.';
+
+    faixasFuturas.forEach(({ faixa, indice }, posicao) => {
+        const item = document.createElement('li');
+        const botao = document.createElement('button');
+        botao.type = 'button';
+        botao.className = 'queue-track-button';
+        const numero = document.createElement('span');
+        numero.className = 'queue-track-number';
+        numero.textContent = String(posicao + 1);
+        const titulo = document.createElement('span');
+        titulo.className = 'queue-track-title';
+        titulo.textContent = faixa.titulo;
+        const albumNome = document.createElement('span');
+        albumNome.className = 'queue-track-album';
+        albumNome.textContent = faixa.album || albumAtual.nome;
+        botao.append(numero, titulo, albumNome);
+        botao.addEventListener('click', () => playTrack(albumAtual.faixas[indice], albumAtual));
+        item.appendChild(botao);
+        queueTrackList.appendChild(item);
+    });
 }
 
 function pararFonte(fonte) {
@@ -213,7 +265,7 @@ async function prepararProximaFaixa() {
     }
 }
 
-playPauseBtn.addEventListener('click', async () => {
+async function alternarReproducao() {
     if (contextoAudio.state === 'running') {
         await contextoAudio.suspend();
         playPauseBtn.innerHTML = '&#9658;';
@@ -223,10 +275,46 @@ playPauseBtn.addEventListener('click', async () => {
         playPauseBtn.innerHTML = '&#10073;&#10073;';
         playPauseBtn.setAttribute('aria-label', 'Pausar');
     }
+}
+
+playPauseBtn.addEventListener('click', alternarReproducao);
+
+document.addEventListener('keydown', (evento) => {
+    if (evento.code !== 'Space' || evento.repeat || !albumAtual) return;
+
+    const alvo = evento.target;
+    if (alvo instanceof Element && alvo.closest('input, textarea, select, button, a, [contenteditable="true"]')) {
+        return;
+    }
+
+    evento.preventDefault();
+    alternarReproducao();
 });
 
 nextBtn.addEventListener('click', proximaFaixa);
 previousBtn.addEventListener('click', faixaAnterior);
+
+if (queueToggleBtn && queuePanel) {
+    queueToggleBtn.addEventListener('click', () => {
+        queuePanel.hidden = !queuePanel.hidden;
+        queueToggleBtn.setAttribute('aria-expanded', String(!queuePanel.hidden));
+        if (!queuePanel.hidden) atualizarFila();
+    });
+
+    queueCloseBtn.addEventListener('click', () => {
+        queuePanel.hidden = true;
+        queueToggleBtn.setAttribute('aria-expanded', 'false');
+        queueToggleBtn.focus();
+    });
+
+    document.addEventListener('keydown', (evento) => {
+        if (evento.key === 'Escape' && !queuePanel.hidden) {
+            queuePanel.hidden = true;
+            queueToggleBtn.setAttribute('aria-expanded', 'false');
+            queueToggleBtn.focus();
+        }
+    });
+}
 
 progressBar.addEventListener('pointerdown', () => {
     usuarioMovendoBarra = true;
@@ -274,4 +362,4 @@ setInterval(() => {
     if (segundosRestantes <= 6 && !bufferSeguinte && !fonteProgramada) {
         prepararProximaFaixa();
     }
-}, 100);
+}, 30);
