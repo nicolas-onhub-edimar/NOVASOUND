@@ -3292,6 +3292,29 @@ header nav a[aria-current="page"]::after {
     min-width: 0;
 }
 
+.most-played-track-info .most-played-count {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 600;
+    cursor: default;
+    transform-origin: left center;
+    transition: transform 0.25s ease, text-shadow 0.25s ease, color 0.25s ease;
+}
+
+@media (hover: hover) {
+    .most-played-track-info .most-played-count:hover {
+        color: #ff5c75;
+        transform: scale(1.08);
+        text-shadow: 0 0 10px rgba(229, 0, 43, 0.55);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .most-played-track-info .most-played-count {
+        transition: none;
+    }
+}
+
 .most-played-track-info h3 {
     overflow: hidden;
     font-size: 16px;
@@ -3306,6 +3329,19 @@ header nav a[aria-current="page"]::after {
     font-size: 13px;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.most-played-track-info .most-played-meta-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.most-played-track-info .most-played-meta-link:hover,
+.most-played-track-info .most-played-meta-link:focus-visible {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .most-played-genre {

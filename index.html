@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Descubra artistas independentes e ouça seus álbuns na NovaSound.">
     <title>NovaSound — música independente</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="redesign.css">
     <link rel="icon" href="LOGO.png">
 </head>
 
@@ -46,74 +46,49 @@
             
 
     <main>
-        <section class="home-welcome" aria-labelledby="homeWelcomeTitle">
-            <div class="home-welcome-copy">
-                <p class="home-welcome-kicker">CONHEÇA A NOVASOUND</p>
-                <h1 id="homeWelcomeTitle">Um novo som pode abrir um mundo inteiro.</h1>
-                <p>Uma plataforma gratuita para explorar artistas independentes, conhecer seus álbuns e ouvir música em um só lugar.</p>
-            </div>
-            <div class="home-welcome-art" aria-hidden="true">
-                <span class="home-sound-glow"></span>
-                <div class="home-sound-visual">
-                    <span class="home-sound-play"></span>
-                    <div class="home-sound-bars">
-                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                    </div>
-                </div>
-                <span class="home-sound-label">SOM NOVO, DO SEU JEITO</span>
-                <span class="home-welcome-art-caption">OUÇA · DESCUBRA · COMPARTILHE</span>
-            </div>
-        </section>
+<div class="ns-wrap">
+<section class="ns-hero" aria-labelledby="nsTitle">
+  <div>
+    <span class="ns-eq-kicker">MÚSICA INDEPENDENTE</span>
+    <h1 id="nsTitle">Ouça quem está criando o <em>som de amanhã</em>.</h1>
+    <p class="ns-lead">A NovaSound reúne artistas independentes, álbuns e lançamentos em um só lugar. Descubra, ouça e guarde o que você ama.</p>
+    <div class="ns-cta">
+      <a href="artistas.html" class="btn-primary">Explorar artistas</a>
+      <a href="mais-tocadas.html" class="btn-secondary">▶ Ouvir as mais tocadas</a>
+    </div>
+    <div class="ns-proof"><span>Acesso gratuito</span><span>Player integrado</span><span>Curtidas na sua conta</span></div>
+  </div>
+  <div class="ns-stage" aria-hidden="true">
+    <img src="LOGO.png" alt="">
+    <div class="ns-now"><div><b>Tocando agora</b><small>Descobertas da NovaSound</small></div><div class="ns-bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+  </div>
+</section>
 
-        <section class="hero inicio-hero">
-            <div class="home-hero-copy">
-                <p class="home-hero-kicker">PARA QUEM TEM RADAR MUSICAL</p>
-                <h2>Você sempre manda a música nova antes de todo mundo?</h2>
-                <p class="home-hero-description">A NovaSound é para quem gosta de descobrir sons independentes e compartilhar a próxima obsessão.</p>
-                <div class="hero-actions">
-                    <a href="artistas.html" class="btn-primary">Encontrar novos artistas</a>
-                    <a href="discografia.html" class="btn-secondary">Explorar álbuns</a>
-                </div>
-            </div>
+<section class="ns-section" aria-labelledby="nsPaths">
+  <div class="ns-head"><span class="ns-eq-kicker">POR ONDE COMEÇAR</span><h2 id="nsPaths">O que você quer fazer agora?</h2><p>Escolha um caminho. Em poucos cliques você já está ouvindo.</p></div>
+  <div class="ns-paths">
+    <a class="ns-path" href="artistas.html"><span class="ns-ico">★</span><h3>Conhecer artistas</h3><p>Veja quem faz parte do catálogo e entre no universo de cada um.</p><span class="ns-go">Ver artistas →</span></a>
+    <a class="ns-path" href="novidades.html"><span class="ns-ico">✦</span><h3>Ver lançamentos</h3><p>Os álbuns mais recentes, sempre no topo.</p><span class="ns-go">Ver novidades →</span></a>
+    <a class="ns-path" href="discografia.html"><span class="ns-ico">◉</span><h3>Explorar álbuns</h3><p>Abra um álbum, veja as faixas e dê o play.</p><span class="ns-go">Abrir discografia →</span></a>
+    <a class="ns-path" href="mais-tocadas.html"><span class="ns-ico">▶</span><h3>Mais tocadas</h3><p>O que a comunidade está ouvindo, filtrado por gênero.</p><span class="ns-go">Ouvir agora →</span></a>
+  </div>
+</section>
 
-            <div class="home-share-scene" aria-hidden="true">
-                <div class="home-scene-orbit home-scene-orbit-one"></div>
-                <div class="home-scene-orbit home-scene-orbit-two"></div>
-                <div class="home-chat-card">
-                    <div class="home-chat-heading">
-                        <span class="home-chat-avatar">N</span>
-                        <span><strong>radar de novidades</strong><small>seu grupo de música</small></span>
-                        <span class="home-chat-dots">•••</span>
-                    </div>
-                    <p class="home-chat-bubble home-chat-bubble-sent">gente, achei uma música nova</p>
-                    <p class="home-chat-bubble home-chat-bubble-received">manda! quem é?</p>
-                    <div class="home-chat-discovery">
-                        <span class="home-chat-play">▶</span>
-                        <span><strong>uma descoberta sua</strong><small>artista independente · NovaSound</small></span>
-                    </div>
-                    <div class="home-wave">
-                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                    </div>
-                </div>
-                <span class="home-scene-caption">OUVI PRIMEIRO. COMPARTILHEI DEPOIS.</span>
-            </div>
+<section class="ns-section" aria-labelledby="nsSteps">
+  <div class="ns-head"><span class="ns-eq-kicker">COMO FUNCIONA</span><h2 id="nsSteps">Simples como deve ser.</h2></div>
+  <div class="ns-steps">
+    <div class="ns-step"><h3>Descubra</h3><p>Use a busca no topo para achar artistas, músicas e álbuns.</p></div>
+    <div class="ns-step"><h3>Ouça</h3><p>O player fica sempre disponível enquanto você navega pelo site.</p></div>
+    <div class="ns-step"><h3>Guarde</h3><p>Crie sua conta e curta faixas para montar sua playlist.</p></div>
+  </div>
+</section>
 
-            <div class="home-hero-highlights" aria-label="O que você encontra na NovaSound">
-                <article class="home-highlight">
-                    <span class="home-highlight-icon home-highlight-icon-price" aria-hidden="true">R$0</span>
-                    <div><h2>Acesso gratuito</h2><p>Explore o catálogo sem custo.</p></div>
-                </article>
-                <article class="home-highlight">
-                    <span class="home-highlight-icon home-highlight-icon-search" aria-hidden="true">⌕</span>
-                    <div><h2>Busca no catálogo</h2><p>Encontre artistas e álbuns.</p></div>
-                </article>
-                <article class="home-highlight">
-                    <span class="home-highlight-icon" aria-hidden="true">▶</span>
-                    <div><h2>Player integrado</h2><p>Ouça sem sair do site.</p></div>
-                </article>
-            </div>
-        </section>
-    </main>
+<section class="ns-band" aria-labelledby="nsArtist">
+  <div><span class="ns-eq-kicker">PARA ARTISTAS</span><h2 id="nsArtist">É artista independente?</h2><p>Fale com a gente e leve sua música para quem procura som novo.</p></div>
+  <a href="contato.html" class="btn-primary">Entrar em contato</a>
+</section>
+</div>
+</main>
 
     <footer class="site-footer">
         <div class="site-footer-inner">
