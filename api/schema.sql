@@ -95,3 +95,16 @@ CREATE TABLE IF NOT EXISTS curtidas_faixas (
     CONSTRAINT fk_curtidas_faixas_faixa FOREIGN KEY (faixa_id)
         REFERENCES faixas(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS reproducoes (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT UNSIGNED NOT NULL,
+    faixa_id INT UNSIGNED NOT NULL,
+    reproduzida_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    KEY idx_reproducoes_faixa (faixa_id),
+    KEY idx_reproducoes_usuario (usuario_id),
+    CONSTRAINT fk_reproducoes_usuario FOREIGN KEY (usuario_id)
+        REFERENCES usuarios(id) ON DELETE CASCADE,
+    CONSTRAINT fk_reproducoes_faixa FOREIGN KEY (faixa_id)
+        REFERENCES faixas(id) ON DELETE CASCADE
+);

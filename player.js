@@ -37,6 +37,51 @@ let idRequisicao = 0;
 let idPrecarregamento = 0;
 let usuarioMovendoBarra = false;
 
+// ---------- Contagem de reproduções (alimenta o ranking "Mais tocadas") ----------
+// Uma faixa só conta depois de ser ouvida por 30 segundos (ou pela faixa inteira, se for mais curta).
+const SEGUNDOS_PARA_CONTAR = 30;
+let monitoramento = null; // { faixa, album, segundos, registrada }
+
+async function registrarReproducao(faixa, album) {
+    try {
+        // Pergunta ao servidor quem está logado e pega o token de segurança (CSRF) atual.
+        const resposta = await fetch('api/status.php');
+        const sessao = await resposta.json();
+        if (!sessao.usuario) return; // só contamos reproduções de quem está logado
+
+        await fetch('api/reproducao.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': sessao.csrf },
+            body: JSON.stringify({
+                titulo: faixa.titulo,
+                artista: faixa.artista || album.artista,
+                album: faixa.album || album.nome,
+            }),
+        });
+    } catch (erro) {
+        console.warn('Não foi possível registrar a reprodução.', erro);
+    }
+}
+
+function iniciarMonitoramentoDeReproducao(faixa, album, novaEscuta) {
+    const mesmaFaixa = monitoramento && monitoramento.faixa === faixa && monitoramento.album === album;
+    if (mesmaFaixa && !novaEscuta) return; // pular dentro da mesma faixa não reinicia a contagem
+    monitoramento = { faixa, album, segundos: 0, registrada: false };
+}
+
+// A cada segundo, soma 1 se o áudio está realmente tocando (pausado não soma).
+setInterval(() => {
+    if (!monitoramento || monitoramento.registrada || contextoAudio.state !== 'running') return;
+
+    monitoramento.segundos++;
+    const duracao = bufferAtual ? bufferAtual.duration : SEGUNDOS_PARA_CONTAR;
+    if (monitoramento.segundos >= Math.min(SEGUNDOS_PARA_CONTAR, duracao)) {
+        monitoramento.registrada = true;
+        registrarReproducao(monitoramento.faixa, monitoramento.album);
+    }
+}, 1000);
+
+
 async function carregarBuffer(faixa) {
     const resposta = await fetch(faixa.arquivo);
 
@@ -145,6 +190,7 @@ function finalizarFonte(fonte) {
         indicePrecarregado = -1;
 
         atualizarInformacoesDaFaixa(faixa, albumAtual);
+        iniciarMonitoramentoDeReproducao(faixa, albumAtual, false);
         return;
     }
 
@@ -205,6 +251,8 @@ async function playTrack(faixa, album, bufferPreparado = null, posicaoInicial = 
         fonte.start(contextoAudio.currentTime, posicaoInicial);
 
         atualizarInformacoesDaFaixa(faixa, album);
+        // Escolher uma faixa (sem buffer pronto e do começo) é uma nova escuta; pular na barra não é.
+        iniciarMonitoramentoDeReproducao(faixa, album, bufferPreparado === null && posicaoInicial === 0);
     } catch (erro) {
         console.error('Erro ao iniciar a faixa:', erro);
     }

@@ -4,12 +4,27 @@ const listaMaisTocadas = document.getElementById('mostPlayedList');
 const filtrosMaisTocadas = document.getElementById('trackFilters');
 const vazioMaisTocadas = document.getElementById('mostPlayedEmpty');
 
-// Enquanto não existe contagem de reproduções, usamos uma seleção editorial:
-// álbuns mais recentes primeiro e faixas na ordem em que aparecem no álbum.
-const faixasEmDestaque = window.albuns
-    .slice()
-    .sort((albumA, albumB) => albumB.ano - albumA.ano)
-    .flatMap((album) => album.faixas.map((faixa) => ({ album, faixa })));
+// O ranking vem do banco: api/ranking.php devolve as faixas com o total de reproduções.
+// Depois juntamos cada item com o catálogo (window.albuns) para ter capa, gêneros etc.
+let ranking = [];
+let erroNoRanking = false;
+
+try {
+    const resposta = await fetch('api/ranking.php');
+    if (!resposta.ok) throw new Error('O servidor não conseguiu carregar o ranking.');
+    ranking = (await resposta.json()).faixas;
+} catch (erro) {
+    console.error('Erro ao carregar o ranking:', erro);
+    erroNoRanking = true;
+}
+
+const faixasEmDestaque = ranking
+    .map((item) => {
+        const album = window.albuns.find((a) => a.artista === item.artista && a.nome === item.album);
+        const faixa = album?.faixas.find((f) => f.titulo === item.titulo);
+        return album && faixa ? { album, faixa, total: item.total } : null;
+    })
+    .filter(Boolean);
 
 const generosFaixas = [...new Set(
     faixasEmDestaque.flatMap(({ album }) => album.generos || [])
@@ -60,7 +75,22 @@ function criarLinhaDaFaixa(item, posicao) {
     titulo.textContent = faixa.titulo;
 
     const artistaAlbum = document.createElement('p');
-    artistaAlbum.textContent = `${album.artista} · ${album.nome}`;
+
+    const linkArtista = document.createElement('a');
+    linkArtista.className = 'most-played-meta-link';
+    linkArtista.href = `discografia.html?${new URLSearchParams({ artista: album.artista })}`;
+    linkArtista.textContent = album.artista;
+
+    const linkNomeAlbum = document.createElement('a');
+    linkNomeAlbum.className = 'most-played-meta-link';
+    linkNomeAlbum.href = `discografia.html?${new URLSearchParams({ artista: album.artista, album: album.nome })}`;
+    linkNomeAlbum.textContent = album.nome;
+
+    const contagem = document.createElement('span');
+    contagem.className = 'most-played-count';
+    contagem.textContent = `${item.total} ${item.total === 1 ? 'reprodução' : 'reproduções'}`;
+
+    artistaAlbum.append(linkArtista, ' · ', linkNomeAlbum, ' · ', contagem);
     informacoes.append(titulo, artistaAlbum);
 
     const generos = document.createElement('span');
@@ -85,6 +115,13 @@ function renderizarFaixas() {
     listaMaisTocadas.replaceChildren(
         ...faixasFiltradas.map((item, indice) => criarLinhaDaFaixa(item, indice + 1))
     );
+    if (erroNoRanking) {
+        vazioMaisTocadas.textContent = 'Não foi possível carregar o ranking. Confira se o Apache e o MySQL estão ligados.';
+    } else if (faixasEmDestaque.length === 0) {
+        vazioMaisTocadas.textContent = 'Ainda não há reproduções registradas. Entre na sua conta e ouça uma faixa por 30 segundos para começar o ranking.';
+    } else {
+        vazioMaisTocadas.textContent = 'Ainda não há faixas ouvidas neste gênero.';
+    }
     vazioMaisTocadas.classList.toggle('is-hidden', faixasFiltradas.length > 0);
 }
 
