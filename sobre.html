@@ -42,63 +42,56 @@
     <a class="header-login-button" href="conta.php">Login</a>
 </header>
 
-<main class="about-page">
-    <section class="about-hero">
-        <div class="about-hero-copy">
-            <p class="releases-kicker">SOBRE A NOVASOUND</p>
-            <h1>Mais espaço para descobrir música independente.</h1>
-            <p>A NovaSound é um projeto de catálogo musical criado para aproximar ouvintes de artistas independentes e dos álbuns que eles lançam.</p>
-            <a class="btn-primary" href="artistas.html">Conhecer os artistas</a>
+<main class="sb-page">
+    <section class="sb-hero">
+        <div class="sb-hero-copy">
+            <h1>Música independente, sem filtro.</h1>
+            <p class="sb-lead">A NovaSound é um catálogo de música independente. Você encontra o artista, abre o álbum, vê as faixas e escuta tudo sem sair do site.</p>
+            <p class="sb-live" id="sbLive">Álbuns, faixas e artistas independentes reunidos em um só lugar.</p>
+            <div class="sb-actions">
+                <a class="btn-primary" href="discografia.html">Abrir discografia</a>
+                <a class="sb-text-link" href="artistas.html">Conhecer os artistas</a>
+            </div>
         </div>
-        <div class="about-hero-art" aria-hidden="true">
-            <span class="about-note about-note-one">♫</span>
-            <span class="about-note about-note-two">♪</span>
-            <span class="about-orbit about-orbit-one"></span>
-            <span class="about-orbit about-orbit-two"></span>
-            <span class="about-hero-word">NOVA<br>SOUND</span>
-        </div>
-    </section>
-
-    <section class="about-purpose" aria-labelledby="aboutPurposeTitle">
-        <div class="about-section-label">
-            <span>01</span>
-            <p>O PROPÓSITO</p>
-        </div>
-        <div class="about-purpose-copy">
-            <h2 id="aboutPurposeTitle">Descobrir sons fora do óbvio.</h2>
-            <p>Encontrar artistas novos nem sempre é simples. A NovaSound organiza artistas, álbuns e faixas em um só lugar, com navegação fácil e acesso gratuito ao catálogo disponível no projeto.</p>
-            <p>A proposta é dar visibilidade a diferentes trajetórias musicais e tornar a descoberta parte da experiência de ouvir.</p>
+        <div class="sb-hero-vinyl" aria-hidden="true">
+            <span class="sb-disc"></span>
+            <img src="LOGO.png" alt="">
         </div>
     </section>
 
-    <section class="about-steps" aria-labelledby="aboutStepsTitle">
-        <div class="about-steps-heading">
-            <p class="releases-kicker">COMO EXPLORAR</p>
-            <h2 id="aboutStepsTitle">Do artista à faixa, sem complicação.</h2>
-        </div>
-        <div class="about-step-grid">
-            <article class="about-step-card">
-                <span>01</span>
+    <section class="sb-section" aria-labelledby="sbRoutesTitle">
+        <h2 id="sbRoutesTitle">O que você encontra aqui</h2>
+        <ul class="sb-routes">
+            <li><a href="discografia.html"><strong>Discografia</strong><span>Os álbuns separados por gênero, com a lista de faixas e o player.</span></a></li>
+            <li><a href="artistas.html"><strong>Artistas</strong><span>Quem faz parte da cena independente e o que já lançou.</span></a></li>
+            <li><a href="mais-tocadas.html"><strong>Mais tocadas</strong><span>O ranking montado com as reproduções reais dos ouvintes.</span></a></li>
+            <li><a href="novidades.html"><strong>Lançamentos</strong><span>Os álbuns mais recentes do catálogo.</span></a></li>
+            <li><a href="curtidas.php"><strong>Curtidas</strong><span>As faixas que você marcou, guardadas na sua conta.</span></a></li>
+        </ul>
+    </section>
+
+    <section class="sb-section" aria-labelledby="sbStepsTitle">
+        <h2 id="sbStepsTitle">Do artista ao play, em três passos</h2>
+        <ol class="sb-steps">
+            <li>
                 <h3>Encontre um artista</h3>
-                <p>Explore a página de artistas ou use a busca da discografia para encontrar quem você quer ouvir.</p>
-            </article>
-            <article class="about-step-card">
-                <span>02</span>
+                <p>Navegue pela página de artistas ou use a busca da discografia.</p>
+            </li>
+            <li>
                 <h3>Escolha um álbum</h3>
-                <p>Veja as capas, conheça os projetos disponíveis e abra a lista de faixas de cada álbum.</p>
-            </article>
-            <article class="about-step-card">
-                <span>03</span>
+                <p>Veja as capas, abra o álbum e confira a lista de faixas.</p>
+            </li>
+            <li>
                 <h3>Dê o play</h3>
-                <p>Use o player para reproduzir uma faixa e navegar entre as músicas do álbum.</p>
-            </article>
-        </div>
+                <p>Toque uma faixa e siga pelas músicas do álbum com o player fixo no rodapé.</p>
+            </li>
+        </ol>
     </section>
 
-    <section class="about-final-callout">
+    <section class="sb-end">
         <div>
-            <p class="releases-kicker">TEM SEMPRE ALGO NOVO PARA OUVIR</p>
-            <h2>Explore o catálogo da NovaSound.</h2>
+            <h2>Pronto para ouvir?</h2>
+            <p>O catálogo está a um clique de distância.</p>
         </div>
         <a class="btn-primary" href="discografia.html">Abrir discografia</a>
     </section>
@@ -123,6 +116,7 @@
     </div>
 </footer>
 <script src="dados.js"></script>
+    <script type="module" src="sobre.js"></script>
 <script type="module" src="pesquisa.js"></script>
 <script src="auth-header.js"></script>
 <script src="router.js"></script>

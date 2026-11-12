@@ -43,10 +43,16 @@
     <a class="header-login-button" href="conta.php">Login</a>    
 </header>
 
-    <main>
-        <section class="page-header">
-            <h1>Discografia</h1>
-            <p>Álbuns disponíveis para ouvir.</p>
+    <main class="nv-disco">
+        <section class="nv-head" aria-labelledby="discoTitle">
+            <div class="nv-head-top">
+                <h1 id="discoTitle">Discografia</h1>
+                <p class="nv-head-lead">Escolha um álbum, abra a lista de faixas e dê o play.</p>
+            </div>
+
+            <label class="visually-hidden" for="searchInput">Buscar álbum ou artista</label>
+            <input type="search" id="searchInput" placeholder="Buscar por artista ou álbum" autocomplete="off">
+            <p class="empty-state is-hidden" id="emptyState" role="status">Nenhum álbum encontrado. Confira o nome do artista ou do álbum e tente de novo.</p>
         </section>
 
         <div class="featured-section-toggle-row">
@@ -54,10 +60,7 @@
         </div>
         <section id="featuredAlbumsSection" class="featured-albums" aria-labelledby="featuredAlbumsTitle">
             <div class="featured-albums-heading">
-                <div>
-                    <p class="releases-kicker">ESCOLHAS DA NOVASOUND</p>
-                    <h2 id="featuredAlbumsTitle">Álbuns em destaque</h2>
-                </div>
+                <h2 id="featuredAlbumsTitle">Álbuns em destaque</h2>
                 <div class="featured-albums-controls" id="featuredAlbumsControls">
                     <button class="featured-albums-control" id="featuredPrevious" type="button" aria-label="Álbum em destaque anterior">&#8592;</button>
                     <button class="featured-albums-control featured-albums-toggle" id="featuredToggle" type="button" aria-label="Pausar rotação automática" aria-pressed="false">&#10074;&#10074;</button>
@@ -68,37 +71,24 @@
             <div id="featuredAlbumDots" class="featured-album-dots" aria-label="Escolher álbum em destaque"></div>
         </section>
 
-        <label class="visually-hidden" for="searchInput">Buscar álbum ou artista</label>
-        <input type="search" id="searchInput" placeholder="Buscar álbum ou artista...">
-        <p class="empty-state is-hidden" id="emptyState" role="status">Nenhum álbum encontrado.</p>
+        <!-- O JavaScript monta aqui as divisórias por gênero e as capas dos álbuns. -->
+        <div class="genre-sections" id="albumGrid"></div>
 
-            <div class="genre-sections" id="albumGrid">
-        
-    </div>
+        <!-- Tela do álbum aberto: o JavaScript preenche capa, nome, artista, ano e faixas. -->
+        <div class="album-detail is-hidden" id="albumDetail">
+            <button class="back-btn" id="backBtn" type="button">&#8592; Voltar para a discografia</button>
 
-    
-    <!-- Fazendo a segunda página para o álbum que for clicado. -->
-    
-    <div class="album-detail is-hidden" id="albumDetail">
-        <button class="back-btn" id="backBtn">&#8592; Voltar</button>
-
-
-        <div class="album-detail-header">
-            <img id="detailCover" src="" alt="">
-            <div class="album-detail-info">
-                <h2 id="detailName"></h2>
-                <p id="detailArtist"></p>
-                <p id="detailYear"></p>
+            <div class="album-detail-header">
+                <img id="detailCover" src="" alt="">
+                <div class="album-detail-info">
+                    <h2 id="detailName"></h2>
+                    <p id="detailArtist"></p>
+                    <p id="detailYear"></p>
+                </div>
             </div>
+
+            <ol class="tracklist" id="detailTracklist"></ol>
         </div>
-
-        <ol class="tracklist" id="detailTracklist">
-            <!-- Faixas serão adicionadas pelo JavaScript automaticamente aqui.-->
-        </ol>
-    </div>
-
-    
-
     </main>
 
 <div class="player-bar is-hidden" id="playerBar">

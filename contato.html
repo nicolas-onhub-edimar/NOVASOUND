@@ -42,92 +42,76 @@
     <a class="header-login-button" href="conta.php">Login</a>
 </header>
 
-<main class="contact-page">
-    <section class="contact-hero">
-        <div>
-            <p class="contact-kicker">FALE COM A NOVASOUND</p>
-            <h1>Tem uma ideia ou quer falar de música?</h1>
-            <p>Este espaço é para sugestões sobre o site, informações de artistas e correções no catálogo.</p>
-        </div>
-        <div class="contact-hero-mark" aria-hidden="true">NS<span>♪</span></div>
+<main class="ct-page">
+    <section class="ct-head">
+        <h1>Fala com a gente.</h1>
+        <p>Indicações de artistas, correções no catálogo, problemas no site e sugestões. Escolha o assunto e conte o que você está pensando.</p>
     </section>
 
-    <section class="contact-content" aria-labelledby="contactFormTitle">
-        <div class="contact-form-panel">
-            <p class="contact-kicker">SUA MENSAGEM</p>
-            <h2 id="contactFormTitle">Como podemos ajudar?</h2>
-            <p class="contact-form-intro">Preencha os campos abaixo. O envio será habilitado quando a etapa do banco de dados estiver pronta.</p>
+    <section class="ct-layout">
+        <div class="ct-panel">
+            <form class="ct-form" id="contactForm" novalidate>
+                <fieldset>
+                    <legend>Sobre o que você quer falar?</legend>
+                    <div class="ct-chips">
+                        <label class="ct-chip"><input type="radio" name="assunto" value="artista"><span>Indicar um artista</span></label>
+                        <label class="ct-chip"><input type="radio" name="assunto" value="catalogo"><span>Corrigir o catálogo</span></label>
+                        <label class="ct-chip"><input type="radio" name="assunto" value="bug"><span>Reportar um problema</span></label>
+                        <label class="ct-chip"><input type="radio" name="assunto" value="sugestao"><span>Dar uma sugestão</span></label>
+                        <label class="ct-chip"><input type="radio" name="assunto" value="outro"><span>Outro assunto</span></label>
+                    </div>
+                    <p class="ct-error" id="erro-assunto" hidden></p>
+                </fieldset>
 
-            <form class="contact-form">
-                <div class="contact-fields-row">
-                    <div class="contact-field">
+                <div class="ct-row">
+                    <div class="ct-field" data-campo="nome">
                         <label for="contactName">Seu nome</label>
-                        <input id="contactName" name="nome" type="text" placeholder="Como podemos chamar você?" autocomplete="name">
+                        <input id="contactName" name="nome" type="text" maxlength="100" placeholder="Como podemos chamar você?" autocomplete="name" aria-describedby="erro-nome">
+                        <p class="ct-error" id="erro-nome" hidden></p>
                     </div>
-                    <div class="contact-field">
+                    <div class="ct-field" data-campo="email">
                         <label for="contactEmail">Seu e-mail</label>
-                        <input id="contactEmail" name="email" type="email" placeholder="voce@exemplo.com" autocomplete="email">
+                        <input id="contactEmail" name="email" type="email" maxlength="190" placeholder="voce@exemplo.com" autocomplete="email" aria-describedby="erro-email">
+                        <p class="ct-error" id="erro-email" hidden></p>
                     </div>
                 </div>
 
-                <div class="contact-field">
-                    <label for="contactSubject">Assunto</label>
-                    <select id="contactSubject" name="assunto">
-                        <option value="" selected disabled>Selecione um assunto</option>
-                        <option value="artista">Quero indicar um artista</option>
-                        <option value="catalogo">Informação ou correção no catálogo</option>
-                        <option value="bug">Quero reportar um bug</option>
-                        <option value="sugestao">Sugestão sobre o site</option>
-                        <option value="outro">Outro assunto</option>
-                    </select>
-                </div>
-
-                <div class="contact-field">
+                <div class="ct-field" data-campo="mensagem">
                     <label for="contactMessage">Mensagem</label>
-                    <textarea id="contactMessage" name="mensagem" rows="5" placeholder="Escreva sua mensagem..."></textarea>
+                    <textarea id="contactMessage" name="mensagem" maxlength="2000" placeholder="Escreva aqui. Se for um problema, diga em qual página aconteceu." aria-describedby="erro-mensagem contactCount"></textarea>
+                    <span class="ct-count" id="contactCount">0 de 2000 caracteres</span>
+                    <p class="ct-error" id="erro-mensagem" hidden></p>
                 </div>
 
-                <button class="contact-submit" type="button" disabled>Envio em breve</button>
+                <div class="ct-hp" aria-hidden="true">
+                    <label>Não preencha este campo <input type="text" name="site" tabindex="-1" autocomplete="off"></label>
+                </div>
+
+                <div class="ct-actions">
+                    <button class="ct-submit" type="submit">Enviar mensagem</button>
+                    <p class="ct-status" id="contactStatus" role="status" aria-live="polite"></p>
+                </div>
             </form>
+
+            <div class="ct-success" id="contactSuccess" hidden tabindex="-1">
+                <h2>Mensagem enviada.</h2>
+                <p>Obrigado por escrever para a NovaSound. Sua mensagem foi registrada.</p>
+                <button class="ct-submit" type="button" id="contactAnother">Enviar outra mensagem</button>
+            </div>
         </div>
 
-        <aside class="contact-side-panel" aria-label="Informações para sua mensagem">
-            <div class="contact-side-heading">
-                <span class="contact-side-icon" aria-hidden="true">♫</span>
-                <div>
-                    <p class="contact-kicker">O QUE VOCÊ PODE ENVIAR</p>
-                    <h2>Vamos manter o catálogo vivo.</h2>
-                </div>
-            </div>
-
-            <article class="contact-topic">
-                <span>01</span>
-                <div>
-                    <h3>Indicação de artista</h3>
-                    <p>Conte para a gente sobre artistas independentes que merecem ser descobertos.</p>
-                </div>
-            </article>
-            <article class="contact-topic">
-                <span>02</span>
-                <div>
-                    <h3>Atualização do catálogo</h3>
-                    <p>Avise se encontrar algum dado de álbum ou faixa que precisa de correção.</p>
-                </div>
-            </article>
-            <article class="contact-topic">
-                <span>03</span>
-                <div>
-                    <h3>Reportar um bug</h3>
-                    <p>Descreva o que aconteceu e em qual página para ajudar a identificar o problema.</p>
-                </div>
-            </article>
-            <article class="contact-topic">
-                <span>04</span>
-                <div>
-                    <h3>Ideias e sugestões</h3>
-                    <p>Compartilhe o que tornaria sua experiência na NovaSound ainda melhor.</p>
-                </div>
-            </article>
+        <aside class="ct-side" aria-labelledby="ctSideTitle">
+            <h2 id="ctSideTitle">O que ajuda na sua mensagem</h2>
+            <dl>
+                <dt>Indicação de artista</dt>
+                <dd>Diga o nome do artista e, se puder, onde ouvir o trabalho dele.</dd>
+                <dt>Correção no catálogo</dt>
+                <dd>Aponte o álbum ou a faixa e qual dado está errado.</dd>
+                <dt>Problema no site</dt>
+                <dd>Descreva o que aconteceu e em qual página, para a gente conseguir repetir o erro.</dd>
+                <dt>Sugestão</dt>
+                <dd>Conte o que deixaria a sua experiência na NovaSound melhor.</dd>
+            </dl>
         </aside>
     </section>
 </main>
@@ -151,6 +135,7 @@
     </div>
 </footer>
 <script src="dados.js"></script>
+    <script type="module" src="contato.js"></script>
 <script type="module" src="pesquisa.js"></script>
 <script src="auth-header.js"></script>
 <script src="router.js"></script>

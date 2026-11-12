@@ -100,3 +100,228 @@ header nav a[aria-current="page"]::after{display:none}
 }
 @media(max-width:560px){.ns-paths{grid-template-columns:1fr}.ns-path{min-height:0}.ns-wrap{width:calc(100% - 32px)}}
 @media(prefers-reduced-motion:reduce){.ns-stage::before,.ns-bars i{animation:none}html{scroll-behavior:auto}}
+
+/* =====================================================================
+   NovaSound v3 — Discografia, Sobre e Contato
+   Tudo fica limitado por .nv-disco, .sb-page e .ct-page: as outras
+   páginas não são afetadas. O disco de vinil é o elemento de assinatura.
+   ===================================================================== */
+.nv-disco,.sb-page,.ct-page{
+  --nv-pad:clamp(20px,4vw,48px);
+  --nv-max:1200px;
+  --nv-ink:#0A0708;
+  --nv-vinyl:
+    radial-gradient(circle closest-side,#0A0708 0 3%,var(--accent) 3.4% 31%,#0A0708 31.4% 34%,transparent 34.4%),
+    conic-gradient(from 25deg,rgba(255,255,255,0) 0,rgba(255,255,255,.24) 7%,rgba(255,255,255,0) 17%,rgba(255,255,255,0) 50%,rgba(255,255,255,.16) 57%,rgba(255,255,255,0) 67%),
+    repeating-radial-gradient(circle,#2b2124 0 2px,#120d0f 2px 4px);
+  position:relative;isolation:isolate;overflow-x:clip;
+  padding:0 max(var(--nv-pad),calc((100% - var(--nv-max)) / 2)) 96px;
+}
+/* textura de fotocópia, bem discreta */
+.nv-disco::before,.sb-page::before,.ct-page::before{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.nv-disco h1,.sb-page h1,.ct-page h1{margin:0;font-weight:700;letter-spacing:-.045em;line-height:.92;text-wrap:balance}
+.nv-disco h2,.sb-page h2,.ct-page h2{font-weight:700;letter-spacing:-.03em;line-height:1.05}
+
+/* ---------------------------- DISCOGRAFIA ---------------------------- */
+.nv-head{padding:clamp(40px,7vw,88px) 0 clamp(28px,4vw,44px)}
+.nv-head-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,340px);gap:20px 48px;align-items:end;margin-bottom:clamp(24px,4vw,40px)}
+.nv-disco .nv-head h1{font-size:clamp(2.6rem,9.6vw,7.25rem)}
+.nv-head-lead{margin:0 0 .6rem;color:var(--text-muted);font-size:1.1rem;line-height:1.55;max-width:38ch}
+.nv-disco #searchInput{
+  display:block;width:100%;margin:0;padding:14px 56px 14px 0;border:0;border-bottom:3px solid var(--text);border-radius:0;
+  background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F5F1F0' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.8' cy='10.8' r='6.8'/%3E%3Cpath d='m16 16 5 5'/%3E%3C/svg%3E") no-repeat right 4px center/28px;
+  color:var(--text);font:600 clamp(1.25rem,3vw,2rem)/1.2 var(--font-heading);letter-spacing:-.02em;box-shadow:none;outline:none;transition:border-color .2s
+}
+.nv-disco #searchInput::placeholder{color:var(--text-muted);font-weight:500}
+.nv-disco #searchInput:focus{border-bottom-color:var(--accent-hot)}
+.nv-disco #searchInput:focus-visible{outline:2px solid var(--accent-hot);outline-offset:6px}
+.nv-disco .empty-state{margin:22px 0 0;font-size:1.05rem;color:var(--text-muted)}
+
+/* destaque: um cartaz de papel */
+.nv-disco .featured-section-toggle-row{width:auto;margin:0 0 12px;justify-content:flex-end}
+.nv-disco .featured-albums{padding:0 0 56px}
+.nv-disco .featured-albums-heading{max-width:none;margin:0 0 20px;align-items:center}
+.nv-disco .featured-albums-heading h2{margin:0;font-size:clamp(1.5rem,3vw,2rem)}
+.nv-disco .featured-album-slide{max-width:none;margin:0}
+.nv-disco .featured-album-card{
+  grid-template-columns:clamp(170px,24vw,320px) minmax(0,1fr);min-height:0;overflow:visible;border:0;border-radius:0;
+  background:var(--text);color:var(--nv-ink);box-shadow:10px 10px 0 var(--accent)
+}
+.nv-disco .featured-album-cover{width:100%;height:auto;min-height:0;aspect-ratio:1;border-radius:0}
+.nv-disco .featured-album-content{padding:clamp(20px,3.4vw,44px);gap:0;justify-content:center}
+.nv-disco .featured-album-label{display:none}
+.nv-disco .featured-album-year{margin:0;color:#5d5356;font-size:.95rem}
+.nv-disco .featured-album-title{margin:6px 0 0;font-size:clamp(2rem,5vw,3.6rem);letter-spacing:-.045em;line-height:.95;color:var(--nv-ink)}
+.nv-disco .featured-album-artist{margin:10px 0 0;color:#3b3235;font-size:1.15rem;font-weight:600}
+.nv-disco .featured-album-link{margin-top:22px;padding:11px 22px;border:0;border-radius:999px;background:var(--nv-ink);color:var(--text);font-weight:700}
+.nv-disco .featured-album-link:hover{background:var(--accent);color:var(--text)}
+.nv-disco .featured-album-dots{justify-content:flex-start;margin:26px 0 0}
+
+/* gêneros viram divisórias de caixa de discos */
+.nv-disco .genre-sections{display:grid;gap:76px;padding:0}
+.nv-disco .genre-sections.is-hidden{max-height:0;overflow:hidden}
+.nv-disco .genre-title{display:block;width:fit-content;margin:0;padding:.55rem 1.2rem .4rem;border-radius:3px 3px 0 0;background:var(--text);color:var(--nv-ink);font-size:1.05rem;letter-spacing:-.01em}
+.nv-disco .genre-title::after{display:none}
+.nv-disco .genre-section .album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:56px 104px;padding:38px 0 0;border-top:2px solid var(--text)}
+
+/* capa + vinil escondido atrás */
+.nv-disco .album-card{position:relative;isolation:isolate;display:block;width:100%;padding:0;border:0;border-radius:0!important;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:none}
+.nv-disco .album-card:hover{transform:none}
+.nv-disco .album-card::before{
+  content:'';position:absolute;z-index:-1;top:0;left:0;width:100%;aspect-ratio:1/1;border-radius:50%;
+  background:var(--nv-vinyl);box-shadow:0 10px 24px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.16);
+  transform:translateX(15%);transition:transform .45s var(--ease)
+}
+.nv-disco .album-card:hover::before,.nv-disco .album-card:focus-visible::before{transform:translateX(46%)}
+.nv-disco .album-card img{position:relative;z-index:1;display:block;width:100%;margin:0;border-radius:2px;box-shadow:0 8px 22px rgba(0,0,0,.5);transition:none}
+.nv-disco .album-card:hover img{transform:none}
+.nv-disco .album-card:focus-visible{outline:none}
+.nv-disco .album-card:focus-visible img{outline:3px solid var(--accent-hot);outline-offset:4px}
+.nv-disco .album-card h3{margin:18px 0 2px;font-size:1.1rem;letter-spacing:-.015em;transition:color .2s}
+.nv-disco .album-card:hover h3,.nv-disco .album-card:focus-visible h3{color:var(--accent-hot)}
+.nv-disco .album-card .album-artist{margin:0;color:var(--text);font-size:.98rem}
+.nv-disco .album-card .album-year{margin:2px 0 0;color:var(--text-muted);font-size:.88rem}
+
+/* tela do álbum: capa grande, vinil sai de trás quando ela chega */
+.nv-disco .album-detail{width:auto;max-width:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(240px,340px) minmax(0,1fr);column-gap:clamp(84px,12vw,176px);align-items:start}
+.nv-disco .album-detail .back-btn{grid-column:1/-1;justify-self:start;margin:clamp(20px,3vw,40px) 0 clamp(24px,4vw,44px);padding:8px 0;border:0;border-radius:0;background:none;color:var(--text-muted);font-size:1rem;transform:none}
+.nv-disco .album-detail .back-btn:hover,.nv-disco .album-detail .back-btn:active{background:none;border:0;color:var(--text);text-decoration:underline;text-underline-offset:6px;transform:none}
+.nv-disco .album-detail-header{display:contents}
+.nv-disco .album-detail #detailCover{grid-column:1;grid-row:2/span 2;position:relative;z-index:1;width:100%;height:auto;aspect-ratio:1;border-radius:2px;box-shadow:0 18px 46px rgba(0,0,0,.55)}
+.nv-disco .album-detail::before{
+  content:'';grid-column:1;grid-row:2/span 2;align-self:start;width:100%;aspect-ratio:1/1;border-radius:50%;
+  background:var(--nv-vinyl);box-shadow:0 14px 34px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.16);opacity:0;transform:translateX(0);
+  transition:opacity .2s ease,transform .7s var(--ease) .1s
+}
+.nv-disco .album-detail.album-revealed::before{opacity:1;transform:translateX(40%)}
+.nv-disco .album-detail-info{grid-column:2;grid-row:2;align-self:end;margin:0;padding:0 0 28px;text-align:left}
+.nv-disco .album-detail-info h2{margin:0 0 14px;font-size:clamp(2.4rem,6vw,5rem);letter-spacing:-.05em;line-height:.92;text-wrap:balance}
+.nv-disco .album-detail-info #detailArtist{margin:0;color:var(--text);font-size:1.3rem;font-weight:600}
+.nv-disco .album-detail-info #detailYear{margin:4px 0 0;color:var(--text-muted);font-size:1rem}
+.nv-disco .album-detail .tracklist{grid-column:2;grid-row:3;width:auto;max-width:none;margin:0;padding:0;border-top:2px solid var(--text)}
+.nv-disco .track-item{gap:6px;border-bottom:1px solid var(--border)}
+.nv-disco .track-item + .track-item{border-top:0}
+.nv-disco .track-item .track-select{min-height:60px;padding:8px 12px 8px 4px;gap:18px;border-radius:0}
+.nv-disco .track-item .track-select:hover{background:rgba(229,0,43,.1)}
+.nv-disco .track-item .track-select:focus-visible{outline:2px solid var(--accent-hot);outline-offset:-2px}
+.nv-disco .track-number{position:relative;width:2.2rem;text-align:left;color:var(--text-muted);font:600 1.15rem var(--font-heading);font-variant-numeric:tabular-nums}
+.nv-disco .track-select:hover .track-number{color:transparent}
+.nv-disco .track-select:hover .track-number::after{content:'\25B6';position:absolute;left:0;color:var(--accent-hot);font-size:.9rem;line-height:1.55}
+.nv-disco .track-title{font-size:1.08rem;font-weight:500}
+
+/* quando um álbum está aberto, a tela inteira é dele */
+.nv-disco:has(#albumDetail:not(.is-hidden)) .nv-head,
+.nv-disco:has(#albumDetail:not(.is-hidden)) .featured-section-toggle-row,
+.nv-disco:has(#albumDetail:not(.is-hidden)) .featured-albums{display:none}
+
+/* ------------------------------- SOBRE ------------------------------- */
+.sb-hero{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;gap:32px;min-height:clamp(460px,68vh,680px);padding:clamp(36px,6vw,80px) 0}
+.sb-page .sb-hero h1{max-width:11ch;font-size:clamp(2.7rem,7.4vw,6.2rem)}
+.sb-lead{max-width:46ch;margin:28px 0 0;color:var(--text-muted);font-size:1.2rem;line-height:1.6}
+.sb-live{max-width:46ch;margin:26px 0 0;padding-left:16px;border-left:3px solid var(--accent);font-weight:600;line-height:1.5}
+.sb-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:34px}
+.sb-text-link{font-weight:600;text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--accent);transition:color .2s}
+.sb-text-link:hover{color:var(--accent-hot)}
+.sb-hero-vinyl{position:relative;justify-self:end;width:min(620px,52vw);aspect-ratio:1;margin-right:calc(-1 * max(var(--nv-pad),(100vw - var(--nv-max)) / 2) - 14%)}
+.sb-disc{position:absolute;inset:0;border-radius:50%;background:var(--nv-vinyl);box-shadow:0 30px 80px rgba(0,0,0,.6);animation:sb-spin 32s linear infinite}
+.sb-hero-vinyl img{position:absolute;top:50%;left:50%;width:30%;transform:translate(-50%,-50%);border-radius:50%}
+@keyframes sb-spin{to{transform:rotate(360deg)}}
+
+.sb-section{padding:clamp(48px,7vw,96px) 0 0}
+.sb-section h2{margin:0 0 clamp(24px,4vw,44px);font-size:clamp(1.9rem,4.4vw,3.2rem)}
+.sb-routes{margin:0;padding:0;list-style:none;border-bottom:1px solid var(--border)}
+.sb-routes a{position:relative;display:grid;grid-template-columns:minmax(150px,320px) minmax(0,1fr);gap:8px 32px;align-items:baseline;padding:26px 48px 26px 0;border-top:1px solid var(--border);transition:padding-left .25s var(--ease),color .2s}
+.sb-routes a::after{content:'';position:absolute;right:6px;top:50%;width:12px;height:12px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:translateY(-50%) rotate(45deg);opacity:.55;transition:opacity .2s,right .25s var(--ease)}
+.sb-routes strong{font:700 clamp(1.4rem,2.6vw,2rem)/1.1 var(--font-heading);letter-spacing:-.03em}
+.sb-routes span{color:var(--text-muted);font-size:1.05rem;line-height:1.5;max-width:52ch}
+.sb-routes a:hover,.sb-routes a:focus-visible{padding-left:16px;color:var(--accent-hot)}
+.sb-routes a:hover::after,.sb-routes a:focus-visible::after{opacity:1;right:0}
+.sb-routes a:hover span,.sb-routes a:focus-visible span{color:var(--text)}
+.sb-routes a:focus-visible{outline:2px solid var(--accent-hot);outline-offset:-2px}
+
+.sb-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(24px,4vw,56px);margin:0;padding:0;list-style:none;counter-reset:passo}
+.sb-steps li{counter-increment:passo;padding-top:20px;border-top:2px solid var(--text)}
+.sb-steps li::before{content:counter(passo);display:block;margin-bottom:14px;color:var(--accent-hot);font:700 clamp(3rem,6vw,4.6rem)/.9 var(--font-heading);letter-spacing:-.05em}
+.sb-steps h3{margin:0 0 8px;font-size:1.35rem;letter-spacing:-.02em}
+.sb-steps p{margin:0;color:var(--text-muted);line-height:1.6;max-width:36ch}
+
+.sb-end{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 40px;margin-top:clamp(64px,9vw,120px);padding:clamp(28px,5vw,56px);background:var(--text);color:var(--nv-ink);box-shadow:10px 10px 0 var(--accent)}
+.sb-end h2{margin:0;font-size:clamp(2rem,5vw,3.6rem);color:var(--nv-ink)}
+.sb-end p{margin:10px 0 0;color:#4a4144;font-size:1.1rem}
+
+/* ------------------------------ CONTATO ------------------------------ */
+.ct-head{max-width:900px;padding:clamp(40px,7vw,88px) 0 clamp(28px,4vw,48px)}
+.ct-page .ct-head h1{font-size:clamp(2.7rem,9vw,6.5rem)}
+.ct-head p{max-width:46ch;margin:26px 0 0;color:var(--text-muted);font-size:1.2rem;line-height:1.6}
+.ct-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(48px,7vw,96px);align-items:start}
+.ct-panel{padding:clamp(22px,4vw,44px);background:var(--text);color:var(--nv-ink);box-shadow:10px 10px 0 var(--accent)}
+.ct-form{display:grid;gap:26px}
+.ct-form fieldset{min-width:0;margin:0;padding:0;border:0}
+.ct-form legend,.ct-field label{display:block;margin:0 0 10px;padding:0;font-weight:700;font-size:1rem;color:var(--nv-ink)}
+.ct-chips{display:flex;flex-wrap:wrap;gap:10px}
+.ct-chip{position:relative;cursor:pointer}
+.ct-chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.ct-chip span{display:block;padding:11px 18px;border:2px solid var(--nv-ink);border-radius:999px;background:#fff;font-weight:600;font-size:.98rem;transition:background .15s,color .15s,transform .15s}
+.ct-chip:hover span{background:#ece6e4}
+.ct-chip input:checked + span{background:var(--nv-ink);color:var(--text)}
+.ct-chip input:focus-visible + span{outline:3px solid var(--accent);outline-offset:3px}
+.ct-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ct-field input,.ct-field textarea{display:block;width:100%;padding:14px 16px;border:2px solid var(--nv-ink);border-radius:0;background:#fff;color:var(--nv-ink);font:inherit;font-size:1.02rem;line-height:1.5;transition:box-shadow .15s}
+.ct-field textarea{min-height:160px;resize:vertical}
+.ct-field input:focus,.ct-field textarea:focus{outline:none;box-shadow:0 0 0 3px var(--accent)}
+.ct-field input::placeholder,.ct-field textarea::placeholder{color:#7a6f73}
+.ct-field[data-invalid] input,.ct-field[data-invalid] textarea{border-color:#B00020}
+.ct-error{margin:8px 0 0;color:#B00020;font-size:.95rem;font-weight:600}
+.ct-error[hidden]{display:none}
+.ct-count{display:block;margin-top:6px;text-align:right;color:#5d5356;font-size:.85rem}
+.ct-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ct-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.ct-submit{display:inline-flex;align-items:center;min-height:52px;padding:0 30px;border:0;border-radius:999px;background:var(--nv-ink);color:var(--text);font:700 1rem var(--font-heading);cursor:pointer;transition:background .2s,transform .15s}
+.ct-submit:hover{background:var(--accent)}
+.ct-submit:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.ct-submit:disabled{opacity:.6;cursor:wait}
+.ct-status{margin:0;font-weight:600;color:#B00020}
+.ct-status:empty{display:none}
+.ct-success[hidden]{display:none}
+.ct-success h2{margin:0 0 12px;font-size:clamp(1.9rem,4vw,2.8rem);color:var(--nv-ink)}
+.ct-success p{margin:0 0 24px;color:#3b3235;font-size:1.1rem;line-height:1.6}
+.ct-side h2{margin:0 0 22px;font-size:clamp(1.5rem,2.6vw,2rem)}
+.ct-side dl{margin:0;border-top:2px solid var(--text)}
+.ct-side dt{padding-top:18px;font-weight:700;font-size:1.05rem}
+.ct-side dd{margin:6px 0 0;padding-bottom:18px;border-bottom:1px solid var(--border);color:var(--text-muted);line-height:1.55}
+
+/* ----------------------------- RESPONSIVO ----------------------------- */
+@media (max-width:1100px) and (min-width:901px){
+  .nv-disco .album-detail.album-revealed::before{transform:translateX(30%)}
+}
+@media (max-width:900px){
+  .nv-head-top{grid-template-columns:1fr}
+  .nv-disco .album-detail{grid-template-columns:1fr;row-gap:0}
+  .nv-disco .album-detail #detailCover,.nv-disco .album-detail::before{grid-column:1;grid-row:2;width:min(72vw,340px)}
+  .nv-disco .album-detail.album-revealed::before{transform:translateX(24%)}
+  .nv-disco .album-detail-info{grid-column:1;grid-row:3;padding:30px 0 22px}
+  .nv-disco .album-detail .tracklist{grid-column:1;grid-row:4}
+  .nv-disco .featured-album-card{grid-template-columns:minmax(120px,38%) minmax(0,1fr)}
+  .sb-hero{grid-template-columns:1fr;min-height:0}
+  .sb-hero-vinyl{width:78vw;margin:8px calc(-1 * var(--nv-pad)) 0 0;margin-right:calc(-1 * (var(--nv-pad) + 16vw))}
+  .sb-steps{grid-template-columns:1fr;gap:36px}
+  .ct-layout{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .nv-disco .genre-section .album-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 30px}
+  .nv-disco .album-card::before{transform:translateX(8%)}
+  .nv-disco .album-card:hover::before,.nv-disco .album-card:focus-visible::before{transform:translateX(14%)}
+  .nv-disco .featured-album-card{grid-template-columns:1fr;box-shadow:6px 6px 0 var(--accent)}
+  .nv-disco .featured-album-cover{max-width:none}
+  .nv-disco .featured-albums-heading{align-items:flex-start;text-align:left}
+  .sb-routes a{grid-template-columns:1fr;padding-right:32px}
+  .ct-row{grid-template-columns:1fr}
+  .ct-panel,.sb-end{box-shadow:6px 6px 0 var(--accent)}
+}
+@media (prefers-reduced-motion:reduce){
+  .sb-disc{animation:none}
+  .nv-disco .album-card::before,.nv-disco .album-detail::before,.sb-routes a,.sb-routes a::after{transition:none}
+}

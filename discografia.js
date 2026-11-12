@@ -39,7 +39,7 @@ function renderTracklist(album) {
     });
 }
 
-function animarCapa(origem) {
+function animarCapa(origem, retanguloOrigem) {
     const movimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!origem || movimentoReduzido) {
@@ -50,7 +50,7 @@ function animarCapa(origem) {
     detail.classList.remove('album-revealed');
     detailCover.classList.add('album-cover-arriving');
 
-    const inicio = origem.getBoundingClientRect();
+    const inicio = retanguloOrigem || origem.getBoundingClientRect();
     const capaVoadora = origem.cloneNode();
     capaVoadora.classList.add('album-cover-flight');
     Object.assign(capaVoadora.style, {
@@ -91,7 +91,14 @@ function animarCapa(origem) {
     });
 }
 
+// Guarda onde a página estava rolada, para voltar ao mesmo ponto quando a pessoa fechar o álbum.
+let posicaoDaRolagem = 0;
+
 function showAlbum(album, capaOrigem) {
+    // Mede a capa clicada ANTES de esconder a grade, para a animação sair do lugar certo.
+    const retanguloOrigem = capaOrigem ? capaOrigem.getBoundingClientRect() : null;
+    posicaoDaRolagem = window.scrollY;
+
     cancelarAnimacaoDaCapa?.();
     detail.classList.remove('album-revealed');
     detailCover.src = album.capa;
@@ -108,7 +115,10 @@ function showAlbum(album, capaOrigem) {
     searchLabel.classList.add('is-hidden');
     emptyState.classList.add('is-hidden');
 
-    animarCapa(capaOrigem);
+    // A tela do álbum começa no topo da página.
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    animarCapa(capaOrigem, retanguloOrigem);
 }
 
 function showGrid() {
@@ -118,6 +128,7 @@ function showGrid() {
     grid.classList.remove('is-hidden');
     searchInput.classList.remove('is-hidden');
     searchLabel.classList.remove('is-hidden');
+    window.scrollTo({ top: posicaoDaRolagem, behavior: 'instant' });
 }
 
 
